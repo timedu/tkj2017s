@@ -1,0 +1,62 @@
+
+
+{% comment %}
+----------------------------------------------------------------------
+Linkki tehtäväpohjaan                                 {% endcomment %}
+  
+{% if page.exercise_template_name != null %}  
+
+  {% assign link = site.baseurl                               %}
+  {% assign link = link | append: "/pohjat/"                  %}
+  {% assign link = link | append: page.exercise_template_name %}
+  {% assign link = link | append: ".zip"                      %}
+  
+  <a class="page-link" href="{{link}}">Tehtäväpohja</a> 
+    
+{% endif %}
+
+
+{% comment %}
+----------------------------------------------------------------------
+Linkki tehtävän keskustelualueelle                    {% endcomment %}
+          
+{% unless page.exercise_discussion_id == null %} 
+
+  {% if page.exercise_dicussion_id != "#" %} 
+      {% assign link = site.discussion_address | append: page.exercise_discussion_id %}      
+  {% else %}
+      {% assign link = "#" %}          
+  {% endif %}
+  
+  &nbsp;                                        
+  <a class="page-link" href="{{link}}">Keskustelu</a> 
+       
+{% endunless %}
+
+
+{% comment %}
+----------------------------------------------------------------------
+Linkki koodikatselmointipyyntöön                      {% endcomment %}
+ 
+&nbsp;                                           
+<a class="page-link" href="{{site.review_address}}">Katselmointi</a> 
+       
+      
+      
+{% comment %}
+----------------------------------------------------------------------
+Linkki ratkaisun palautustyökaluun                    {% endcomment %}
+          
+{% unless page.exercise_upload_id == null %} 
+
+  {% if page.exercise_upload_id != "#" %} 
+      {% assign link = site.upload_address | append: page.exercise_upload_id %}       
+  {% else %}
+      {% assign link = "#" %}
+  {% endif %}
+  
+  &nbsp;              
+  <a class="page-link" href="{{link}}">Palautus</a> 
+       
+{% endunless %}
+

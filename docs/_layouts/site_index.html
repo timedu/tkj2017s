@@ -1,0 +1,27 @@
+---
+layout: base_layout
+---
+
+{% assign moodle = "https://moodle2.tut.fi/course/view.php?id=10851" %} 
+{% assign uutiset = "https://moodle2.tut.fi/mod/forum/view.php?id=329012" %} 
+  
+<nav class="timedu-page-nav">
+  <a href="{{moodle}}" class="page-link">Moodle</a>:
+  <a href="{{uutiset}}" class="page-link">Uutiset</a>        
+</nav>
+
+<article class="post">
+
+  <header class="post-header">
+  
+    <h1 class="post-title">{{ site.kurssin_nimi }}</h1>
+    
+  </header>
+
+  <div class="post-content">
+  
+    {{ content }}
+  
+  </div>
+
+</article>
