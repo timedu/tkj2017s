@@ -12,13 +12,15 @@ sivusto täydentyy ja päivittyy kurssitoteutuksen edetessä
 
 *Tietokantajärjestelmät* on erityyppisiin tietokantoihin tutustuttava kurssi, joka tarjoaa aihepiiristään sekä ison kuvan että käytännön osaamista järjestelmien rakentamiseen. Esillä on perinteisen relaatiotietokannan ohella joukko ns. NoSQL-tietokantoja, joiden soveltamisella tavoitellaan toisaalta sovelluskehitystyön parempaa tuottavuutta ja toisaalta suurempaa tehokkuuutta käsitellä entistä suurempia tietomassoja.
 
-Kurssin lukemistona on *Pramod J. Sadalagen* ja *Martin Fowlerin* tiivis kirja [NoSQL Distilled](https://martinfowler.com/books/nosql.html). Teknisessä osuudessä on esillä eri tietokantatyyppien yleisimpiä edustajia. Kurssi kurssi on jakaantuu seitsemään osaan seuraavasti:
+Kurssin lukemistona on *Pramod J. Sadalagen* ja *Martin Fowlerin* tiivis kirja [NoSQL Distilled][NoSQL Distilled]. Teknisessä osuudessä on esillä eri tietokantatyyppien yleisimpiä edustajia, joita myös em. kirja käsittelee esimerkkeinä. Kurssi on jäsennetty teknisen näkökulman mukaan seitsemään osaan, joista kunkin ytimenä on osan teemaan liittyvä tehtäväsarja:
+
+[NoSQL Distilled]: https://www.pearson.com/us/higher-education/program/Sadalage-No-SQL-Distilled-A-Brief-Guide-to-the-Emerging-World-of-Polyglot-Persistence/PGM75436.html
 
 {% include collections_list.md %}
 
-Kurssiin liittyvät teknisen tehtävät laaditaan pääosin JavaScript-ympäristössä suoritusalustana [Node.js](https://nodejs.org/en/), johon tutustutaan *ensimmäisessä osassa* ennen tietokanta-aiheisiin siirtymistä. *Toisessa osassa* esillä on relaatiotietokanta ja sen käyttö sovellusohjelmissa perinteisellä SQL-rajapinnalla ja siten, että tietokannan tiedot näkyvät tyypillisinä ohjelmointikielen objekteina ([ORM](https://en.wikipedia.org/wiki/Object-relational_mapping)). Esimerkkinä relaatiotietokannoista on [SQLite][sqlite], jonka käyttö ei edellytä erillistä palvelinohjelmistoa.
+Tehtävät ovat osin lyhyitä erityyppisten tietokantojen käsittelyyn liittyviä ohjelmointiongelmia ja osin kirjaan perustuvia kysymyksiä. Ohjelmointitehtävien ratkaisut ovat yksinkertaisia web-sovelluksia, joiden suoritusalustana on  [Node.js](https://nodejs.org/en/). Siihen tutustutaan *ensimmäisessä osassa* (1) ennen tietokanta-aiheisiin siirtymistä. *Toisessa osassa* (2) esillä on relaatiotietokanta ja sen käyttö sovellusohjelmissa perinteisellä SQL-rajapinnalla ja siten, että tietokannan tiedot näkyvät tyypillisinä ohjelmointikielen objekteina ([ORM](https://en.wikipedia.org/wiki/Object-relational_mapping)). Esimerkkinä relaatiotietokannoista on [SQLite][sqlite], jonka käyttö ei edellytä erillistä palvelinohjelmistoa. Kurssin *osissa 3-6* on esillä neljä NoSQL-tietokantojen  perustyyppiä: avain-arvopari, dokumentti, sarakeperhe ja graafi. Näistä kolme ensimmäistä ovat ns. [aggregaattitietokantoja](https://martinfowler.com/bliki/AggregateOrientedDatabase.html), joista esimerkkeinä toimivat [Riak][riak], [MongoDB][mongodb] ja [Cassandra][cassandra]. Graafitietokannoista tarkastelun kohteena on [Neo4j][neo4j]. *Viimeisessä osassa* (7) esillä on hybriditietokanta, [OrientDB][orientdb], jossa on sekä dokumentti- että graafitietokannan ominaisuudet. 
 
-Kurssin osissa 3-6 on esillä neljä NoSQL-tietokantojen  perustyyppiä: *avain-arvopari*, *dokumentti*, *sarakeperhe* ja *graafi*. Näistä kolme ensimmäistä ovat ns. [aggregaattitietokantoja](https://martinfowler.com/bliki/AggregateOrientedDatabase.html), joista esimerkkeinä toimivat [Riak][riak], [MongoDB][mongodb] ja [Cassandra][cassandra]. Graafitietokannoista tarkastelun kohteena on [Neo4j][neo4j]. *Viimeisessä osassa* esillä on hybriditietokanta, [OrientDB][orientdb], jossa on sekä dokumentti- että graafitietokannan ominaisuudet. Näiden lisäksi esimerkkinä olevalla järjestelmällä on vielä oliopiirteitä.
+Jokaiseen osaan liittyy 3h kontaktitilaisuus, jonka yhteydessä esitellään osan teema tehtäväsarjoineen sekä ratkaistaan ohjatusti teemaan liittyviä tehtäviä. Kurssin suorittaminen ei edellytä kontaktitilaisuuksiin osallistumista. Etäällä tapahtuvan opiskelun tukemista varten kurssilla on käytössä mm. Moodle-keskustelut ja tehtävien ratkaisuluonnoksiin liittyvät katselmukset.
 
 
 [sqlite]: https://www.sqlite.org
@@ -32,6 +34,9 @@ Kurssin osissa 3-6 on esillä neljä NoSQL-tietokantojen  perustyyppiä: *avain-
 
 
 {% comment %}
+
+
+
 
 Kopio edellisestä versiosta
 
@@ -55,4 +60,5 @@ Kurssi *ensimmäinen osa* tutustuttaa kurssilla käyttettavään kehitystyön pe
 
 #### Lisätietoja
 
+[Kurssitoteutuksen aikataulu](aikataulu)   
 [Suorituksen arvostelu](arvostelu)   

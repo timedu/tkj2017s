@@ -4,17 +4,19 @@ title: Arvostelu
 permalink: /arvostelu/index.html 
 ---
 
+Kurssi on jaettu seitsemään osaan, joista kunkin ytimenä on osan teemaan liittyvä tehtäväsarja. Jokaisen tehtäväsarjan enimmäispistemäärä on 15 ja siten tehtävistä yhteensä saatava enimmäispistemäärä on 105. Exam-ympäristössä suoritettava tentti on luonteeltaan tehtäväsarjojen kaltainen. Tentistä saa enintään 100 pistettä.
+
 
 #### Suorituskriteerit
 
-* vähintään n. 50% tehtävistä ja
-* vähintään n. 50% suoritus tentistä
+* vähintään 50p tehtävistä ja
+* vähintään 50p tentistä
 
-#### Arvosana (0-5)
+#### Arvosana
 
-* n. 50 % tehtävistä: 1
-* n. 70 % tehtävistä: 2
-* n. 90 % tehtävistä: 3
-* n. 50 % suoritus tentistä: + 0
-* n. 70 % suoritus tentistä: + 1
-* n. 90 % suoritus tentistä: + 2
+* 50p tehtävistä: 1
+* 70p tehtävistä: 2
+* 90p tehtävistä: 3
+* 50p tentistä: + 0
+* 70p tentistä: + 1
+* 90p tentistä: + 2

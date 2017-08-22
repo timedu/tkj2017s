@@ -20,14 +20,16 @@ collections:
     output: true
     permalink: /:collection/:path/
     nimi: Osa 1
-    otsikko: Kehitysympäristö
+    #otsikko: Kehitysympäristö
+    otsikko: Sovellusympäristö
     julkaisu: 25.8.2017
     
   osa2:
     output: true
     permalink: /:collection/:path/
     nimi: Osa 2
-    otsikko: ORM-työkalut
+    #otsikko: ORM-työkalut
+    otsikko: Relaatiotietokannat ja ORM
     julkaisu: 1.9.2017
         
   osa3:
