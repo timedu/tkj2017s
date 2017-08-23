@@ -110,6 +110,11 @@ DataStax Academy.
 
 <https://docs.npmjs.com>
 
+
+<http://es6-features.org/>
+
+<http://www.ecma-international.org/ecma-262/6.0/>
+
 #### Kurssin tehtävien testeihin liittyviä tekniikoita
 
 [Mocha](https://mochajs.org)

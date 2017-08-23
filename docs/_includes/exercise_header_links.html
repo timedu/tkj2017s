@@ -38,9 +38,12 @@ Linkki tehtävän keskustelualueelle                    {% endcomment %}
 ----------------------------------------------------------------------
 Linkki koodikatselmointipyyntöön                      {% endcomment %}
  
-&nbsp;                                           
-<a class="page-link" href="{{site.review_address}}">Katselmointi</a> 
+{% unless page.no_review != null %} 
+ 
+  &nbsp;                                           
+  <a class="page-link" href="{{site.review_address}}">Katselmointipyyntö</a> 
        
+{% endunless %}
       
       
 {% comment %}

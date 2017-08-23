@@ -62,3 +62,5 @@ Kurssi *ensimmäinen osa* tutustuttaa kurssilla käyttettavään kehitystyön pe
 
 [Kurssitoteutuksen aikataulu](aikataulu)   
 [Suorituksen arvostelu](arvostelu)   
+[Tehtävien katselmointipyynnöt](katselmukset)   
+
