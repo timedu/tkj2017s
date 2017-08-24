@@ -5,7 +5,9 @@ exercise_discussion_id: 82685
 no_review: 1
 ---
 
-Varmista, että ohjelmointitehtävissä käytettävä kalusto on asennettu kehitysympäristöösi, ja laadi sitten Node-pohjainen `Hello World` -sovellus.
+Varmista, että ohjelmointitehtävissä käytettävä kalusto on asennettu kehitysympäristöösi, ja laadi sitten Node-pohjainen `Hello World` -sovellus. Jos tormäät tehtävän ratkaisun yhteydessä ongelmiin, voit lähettää ongelman "keskusteltavaksi" tehtävän otsikon yläpuolella olevan linkin[^fn0] kautta.  
+
+[^fn0]: Keskustelu käydään kurssin Moodle-alueella.
 
 #### NetBeans IDE
 
@@ -89,7 +91,7 @@ const http = require('http');
 {% endhighlight %}
 
 
-Lauseen myötä ohjelmassa on käytössä `http` -objekti, Tämän jälkeen seuraavilla riveillä määritellään kaksi jäljempänä viitattavaa vakiota:
+Lauseen myötä ohjelmassa on käytössä `http` -objekti. Tämän jälkeen, seuraavilla riveillä, määritellään kaksi jäljempänä viitattavaa vakiota:
 
 {% highlight javascript %}
 
@@ -170,6 +172,9 @@ server.listen(port, hostname, function() {
 
 {% endhighlight %}
 
+<br/>
+
+Tässä tehtävässä Hello World -sovelluksen avulla varmistettiin, että tarvittava peruskalusto kehitystyöta varten on toimintakunnossa. [Seraavassa tehtävässä](../tehtava11) muokataan hieman tässä esillä ollutta ohjelmakoodia.  
 
 
 <br/>
