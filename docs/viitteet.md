@@ -115,6 +115,9 @@ DataStax Academy.
 
 <http://www.ecma-international.org/ecma-262/6.0/>
 
+<http://eloquentjavascript.net>
+
+
 #### Kurssin tehtävien testeihin liittyviä tekniikoita
 
 [Mocha](https://mochajs.org)
