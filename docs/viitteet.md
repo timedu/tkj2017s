@@ -5,7 +5,60 @@ permalink: /viitteet/index.html
 site_menu: 1
 ---
 
-#### Tietokantateknologioita
+### Kirjallisuutta
+
+#### NoSQL Distilled
+
+Sadalage, Pramod J. & Fowler, Martin (2013). [NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence][NoSQL Distilled].
+ 
+[NoSQL Distilled]: https://www.pearson.com/us/higher-education/program/Sadalage-No-SQL-Distilled-A-Brief-Guide-to-the-Emerging-World-of-Polyglot-Persistence/PGM75436.html
+
+*NoSQL Distilled* toimii kurssilukemistona siten, että kuhunkin kurssin seitsemään osaan sisältyy kirjaan perustuva kysymyssarja. Tentti sisältää vastaavanlaisia kysymyksiä. Kirjassa on n. 150 sivua, jotka jakaantuvat 15 lukuun. Kysymyssarjoissa käsitellään kirjaa luvuittain siten, että osien 1-6 kysymysten pohjana on aina kirjan kaksi lukua, jolloin osaan 7 jää kysymyksiä kolmesta viimeisestä luvuista.
+
+Kirjan ydinkohtia on tuotu esiin sivuilla [NoSQL Databases: An Overview][nosql-overview] ja [Key Points from NoSQL Distilled][nosql-distilled-key-points]. Painovirheet on listattu [Errata-sivulla][nosql-distilled-errata].
+
+[nosql-overview]: https://www.thoughtworks.com/insights/blog/nosql-databases-overview
+[nosql-distilled-key-points]: https://martinfowler.com/articles/nosqlKeyPoints.html
+[nosql-distilled-errata]: https://martinfowler.com/nosqlErrata.html
+
+Seuraavat suhteellisen samaisältöiset Martin Fowlerin Youtube-videot pohjautuvat *NoSQL Distilled* -kirjaan:
+
+* [Introduction to NoSQL][NoSQL-youtube-1] (50 min.)   
+[International Software Development Conference][goto2012] in Aarhus, Denmark 2012
+* [NoSQL Distilled to an hour][NoSQL-youtube-2] (1 h)   
+[NoSQL matters Conference][NoSQLmatters2013] in Cologne, Germany 2013
+
+[NoSQL-youtube-1]: https://www.youtube.com/watch?v=qI_g07C_Q5I
+[NoSQL-youtube-2]: https://www.youtube.com/watch?v=ASiU89Gl0F0
+[goto2012]: http://gotocon.com/aarhus-2012/presentation/Introduction%20to%20NoSQL
+[NoSQLmatters2013]: https://2013.nosql-matters.org/cgn/index.html%3Fp=1834.html
+
+
+#### Seven Databases
+
+Redmond, Eric & Wilson, Jim R. (2012). [Seven Databases in Seven Weeks: A Guide to Modern Databases and the NoSQL Movement][seven-databases].  
+
+[seven-databases]: https://pragprog.com/book/rwdata/seven-%20databases-in-seven-weeks
+
+*Seven Databases* on yksi tämän kurssin inspiraation lähteistä. Tosin kurssilla on esillä ainoastaan kuusi eri tietokannan hallintajärjestelmää ja käsiteltävät esimerkit eivät ole aivan samoja kuin *Seven Databases* -kirjassa. *Seven Databases* on jonkin verran teknisempi kuin *NoSQL Distilled*.
+
+
+
+#### Tietokantojen perusteita yliopistoissa
+
+[Tietokannat ja tiedonhallinnan perusteet][ITKA204]. 
+Kurssimoniste. Jyväskylän yliopisto.
+(Viitattu 28.8.2017)   
+[Tietokantojen perusteet][581328].
+Kurssimateriaali. Helsingin yliopisto.
+(Viitattu 28.8.2017)
+
+[ITKA204]: https://tim.jyu.fi/view/kurssit/tktl/itka204/kurssimoniste
+[581328]: http://tietokantojen-perusteet.github.io
+
+
+
+### Tietokantateknologioita
 
 [SQLite][sqlite]  
 
@@ -79,7 +132,7 @@ DataStax Academy.
 [cassandra]: http://cassandra.apache.org
 [orientdb]: http://orientdb.com
 
-#### Muita aineistossa esillä olevia ohjelmistoteknologioita
+### Muita aineistossa esillä olevia ohjelmistoteknologioita
 
 <https://developer.mozilla.org/en-US/docs/Web>
 
@@ -119,7 +172,7 @@ DataStax Academy.
 <http://eloquentjavascript.net>
 
 
-#### Kurssin tehtävien testeihin liittyviä tekniikoita
+### Kurssin tehtävien testeihin liittyviä tekniikoita
 
 [Mocha](https://mochajs.org)
 
@@ -138,16 +191,4 @@ DataStax Academy.
 * [selenium-webdriver/phantomjs note](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/phantomjs.html)
 
 <http://chaijs.com>
-
-#### Tietokantojen perusteita yliopistoissa
-
-[Tietokannat ja tiedonhallinnan perusteet][ITKA204]. 
-Kurssimoniste. Jyväskylän yliopisto.
-(Viitattu 22.12.2016)   
-[Tietokantojen perusteet][581328].
-Kurssimateriaali. Helsingin yliopisto.
-(Viitattu 22.12.2016)
-
-[ITKA204]: https://tim.jyu.fi/view/kurssit/tktl/itka204/kurssimoniste
-[581328]: http://tietokantojen-perusteet.github.io
 
