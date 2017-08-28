@@ -3,7 +3,7 @@ layout: exercise_page
 title: "Tehtävä 1.5: Hello MVC (2p)"
 exercise_template_name: W1E05.HelloMVC
 exercise_discussion_id: 82691
-exercise_upload_id: 
+exercise_upload_id: 335634
 ---
 
 Laadi sovellus, joka toimiin ulospäin samoin[^1] [edellisen tehtävän](../tehtava14) ratkaisun kanssa. Sovellusten lähdekoodien jäsennykset kuitenkin poikkeavat toisistaan. Tässä tehtävässä sovellus rakentuu erään tyyppisen MVC-mallin mukaan (Model-View-Controller):

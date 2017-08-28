@@ -14,7 +14,8 @@ site_menu: 1
 * [SQLite Manager (Firefox lisäosa)](https://addons.mozilla.org/fi/firefox/addon/sqlite-manager/)
 * [DB Browser for SQLite](http://sqlitebrowser.org)
 
-[Sequelize][sequelize]
+[Sequelize][sequelize]   
+[Bookshelf](http://bookshelfjs.org)
 
 [LevelDB](http://leveldb.org)
 
