@@ -3,6 +3,15 @@ layout: collection_index
 permalink: /:collection/index.html
 ---
 
+{% comment %}
+
+170829 / TiM
+
+Tehtävät 1.0 ja 1.1 voisi jättää jatkossa pois so. siirtyä suoraan Express-sovelluskehyksen käyttöön.
+
+{% endcomment %}
+
+
 Kurssilla tutustutaan erilaisiin tietokantaratkaisuihin kehittämällä yksinkertaisia tietokantoja käsitteleviä sovelluksia. Kehitysvälineenä on [NetBeans IDE][netbeans][^1], jolla koodin kirjoittamisen ohella syntaksiohjatusti voidaan mm. hallita sovelluksen riippuvuuksia erillisistä moduuleista, ajaa testejä sekä käynnistää ja pysäyttää kehityksen alla oleva sovellus.
 
 [^1]: IDE - Integrated Development Environment 
