@@ -6,7 +6,9 @@ layout: site_index
 Tämä on [TTY Porin](http://www.poridi.fi) lukuvuoden 2017/18 Tietokantajärjestelmät -opintojakson materiaali, joka rakentuu kurssitoteutuksen edetessä melko pitkälle [edellisen lukuvuoden materiaalin](https://timedu.github.io/tkj2017k/) pohjalta. 
  
 
-Tietokantajärjestelmä on tietokannan (DB), tietokannan hallintajärjestelmän (DBMS) ja tietokantaa käsittelevien sovellusten muodostama kokonaisuus:
+Tietokantajärjestelmä on [tietokannan][database] (DB), tietokannan hallintajärjestelmän (DBMS) ja tietokantaa käsittelevien sovellusten muodostama kokonaisuus:
+
+[database]: https://en.wikipedia.org/wiki/Database
 
 ~~~
 [ Application ][ API ] <--> [ DBMS ] <--> [ DB ]
@@ -14,9 +16,9 @@ Tietokantajärjestelmä on tietokannan (DB), tietokannan hallintajärjestelmän 
 
 Termillä *tietokanta* viitataan usein myös tietokannan hallintajärjestelmään.
 
-*Tietokantajärjestelmät* on erityyppisiin [tietokantoihin][database] tutustuttava kurssi, joka tarjoaa aihepiiristään sekä ison kuvan että käytännön osaamista järjestelmien rakentamiseen. Esillä on perinteisen relaatiotietokannan ohella joukko ns. NoSQL-tietokantoja, joiden soveltamisella tavoitellaan toisaalta sovelluskehitystyön parempaa tuottavuutta ja toisaalta suurempaa tehokkuuutta käsitellä entistä suurempia tietomassoja.
+*Tietokantajärjestelmät* on [erityyppisiin tietokantoihin][db-engines-ranking] tutustuttava kurssi, joka tarjoaa aihepiiristään sekä ison kuvan että käytännön osaamista järjestelmien rakentamiseen. Esillä on perinteisen relaatiotietokannan ohella joukko ns. NoSQL-tietokantoja, joiden soveltamisella tavoitellaan toisaalta sovelluskehitystyön parempaa tuottavuutta ja toisaalta suurempaa tehokkuuutta käsitellä entistä suurempia tietomassoja.
 
-[database]: https://en.wikipedia.org/wiki/Database
+[db-engines-ranking]: https://db-engines.com/en/ranking
 
 Kurssin lukemistona on *Pramod J. Sadalagen* ja *Martin Fowlerin* tiivis kirja [NoSQL Distilled](viitteet/#nosql-distilled). Teknisessä osuudessä on esillä eri tietokantatyyppien yleisimpiä edustajia, joita myös em. kirja käsittelee esimerkkeinä. Kurssi on jäsennetty teknisen näkökulman mukaan seitsemään osaan, joista kunkin ytimenä on osan teemaan liittyvä tehtäväsarja:
 
