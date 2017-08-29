@@ -60,6 +60,12 @@ Kurssimateriaali. Helsingin yliopisto.
 
 ### Tietokantateknologioita
 
+<http://db-engines.com>   
+
+<https://bitnami.com/stacks/database>
+
+#### Relaatiotietokannat ja ORM
+
 [SQLite][sqlite]  
 
 * [SQL As Understood By SQLite](https://www.sqlite.org/lang.html)
@@ -70,12 +76,20 @@ Kurssimateriaali. Helsingin yliopisto.
 [Sequelize][sequelize]   
 [Bookshelf](http://bookshelfjs.org)
 
+#### Avain-arvoparitietokannat
+
 [LevelDB](http://leveldb.org)
 
 * [Node.js Databases: An Embedded Database Using LevelDB](https://blog.yld.io/2016/10/24/node-js-databases-an-embedded-database-using-leveldb). Pedro Teixeira, 2016.
 * [LevelUP](https://github.com/Level/levelup/blob/master/README.md)
 * [level-sublevel](https://github.com/dominictarr/level-sublevel/blob/master/README.md#level-sublevel)
 * [cuid](https://github.com/ericelliott/cuid/blob/master/README.markdown#cuid)
+  
+[Redis][redis] 
+ 
+[redis]: https://redis.io
+  
+#### Dokumenttitietokannat
   
 [MongoDB][mongodb]  
 
@@ -88,6 +102,9 @@ Kurssimateriaali. Helsingin yliopisto.
 [NeDB](https://github.com/louischatriot/nedb/blob/master/README.md)   
 [TingoDB](http://www.tingodb.com)
 
+
+#### Graafitietokannat
+
 [LevelGraph](https://github.com/mcollina/levelgraph/blob/master/README.md)
 
 * [Graph databases in the browser: using LevelGraph to explore New Delhi](http://www.vldb.org/pvldb/vol9/p1469-maccioni.pdf). Maccioni&Collina, 2016.
@@ -98,6 +115,7 @@ Kurssimateriaali. Helsingin yliopisto.
 * [Neo4j Driver for Javascript](http://neo4j.com/docs/api/javascript-driver/current/)
 * [GrapheneDB](http://www.graphenedb.com)
 
+#### Sarakeperhetietokannat
 
 [Cassandra][cassandra]  
 
@@ -110,23 +128,20 @@ DataStax Academy.
 * [Datastax Docs](http://docs.datastax.com/en/landing_page/doc/landing_page/current.html)
 * [NetCassandraBeans - plugin](http://plugins.netbeans.org/plugin/59444/netcassandrabeans)
 
+#### Hybriditietokannat
+
 [OrientDB][orientdb]  
 
 * [OrientDB Manual](http://orientdb.com/docs/last/)
 * [OrientJS Driver](http://orientdb.com/docs/last/OrientJS.html) 
 * [OrientDB - Getting Started](https://www.udemy.com/orientdb-getting-started/). Udemy.
 
-[Redis][redis] 
 
 
-<http://db-engines.com>   
-
-<https://bitnami.com/stacks/database>
 
 [sqlite]: https://www.sqlite.org
 [sequelize]: http://www.sequelizejs.com
 
-[redis]: https://redis.io
 [mongodb]: https://www.mongodb.com
 [neo4j]: https://neo4j.com
 [cassandra]: http://cassandra.apache.org

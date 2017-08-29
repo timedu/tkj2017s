@@ -4,15 +4,21 @@ layout: site_index
 ---
 
 Tämä on [TTY Porin](http://www.poridi.fi) lukuvuoden 2017/18 Tietokantajärjestelmät -opintojakson materiaali, joka rakentuu kurssitoteutuksen edetessä melko pitkälle [edellisen lukuvuoden materiaalin](https://timedu.github.io/tkj2017k/) pohjalta. 
+ 
 
+Tietokantajärjestelmä on tietokannan (DB), tietokannan hallintajärjestelmän (DBMS) ja tietokantaa käsittelevien sovellusten muodostama kokonaisuus:
 
 ~~~
-sivusto täydentyy ja päivittyy kurssitoteutuksen edetessä
+[ Application ][ API ] <--> [ DBMS ] <--> [ DB ]
 ~~~
 
-*Tietokantajärjestelmät* on erityyppisiin tietokantoihin tutustuttava kurssi, joka tarjoaa aihepiiristään sekä ison kuvan että käytännön osaamista järjestelmien rakentamiseen. Esillä on perinteisen relaatiotietokannan ohella joukko ns. NoSQL-tietokantoja, joiden soveltamisella tavoitellaan toisaalta sovelluskehitystyön parempaa tuottavuutta ja toisaalta suurempaa tehokkuuutta käsitellä entistä suurempia tietomassoja.
+Termillä *tietokanta* viitataan usein myös tietokannan hallintajärjestelmään.
 
-Kurssin lukemistona on *Pramod J. Sadalagen* ja *Martin Fowlerin* tiivis kirja [NoSQL Distilled][NoSQL Distilled]. Teknisessä osuudessä on esillä eri tietokantatyyppien yleisimpiä edustajia, joita myös em. kirja käsittelee esimerkkeinä. Kurssi on jäsennetty teknisen näkökulman mukaan seitsemään osaan, joista kunkin ytimenä on osan teemaan liittyvä tehtäväsarja:
+*Tietokantajärjestelmät* on erityyppisiin [tietokantoihin][database] tutustuttava kurssi, joka tarjoaa aihepiiristään sekä ison kuvan että käytännön osaamista järjestelmien rakentamiseen. Esillä on perinteisen relaatiotietokannan ohella joukko ns. NoSQL-tietokantoja, joiden soveltamisella tavoitellaan toisaalta sovelluskehitystyön parempaa tuottavuutta ja toisaalta suurempaa tehokkuuutta käsitellä entistä suurempia tietomassoja.
+
+[database]: https://en.wikipedia.org/wiki/Database
+
+Kurssin lukemistona on *Pramod J. Sadalagen* ja *Martin Fowlerin* tiivis kirja [NoSQL Distilled](viitteet/#nosql-distilled). Teknisessä osuudessä on esillä eri tietokantatyyppien yleisimpiä edustajia, joita myös em. kirja käsittelee esimerkkeinä. Kurssi on jäsennetty teknisen näkökulman mukaan seitsemään osaan, joista kunkin ytimenä on osan teemaan liittyvä tehtäväsarja:
 
 [NoSQL Distilled]: https://www.pearson.com/us/higher-education/program/Sadalage-No-SQL-Distilled-A-Brief-Guide-to-the-Emerging-World-of-Polyglot-Persistence/PGM75436.html
 
@@ -20,7 +26,7 @@ Kurssin lukemistona on *Pramod J. Sadalagen* ja *Martin Fowlerin* tiivis kirja [
 
 Tehtävät ovat osin lyhyitä erityyppisten tietokantojen käsittelyyn liittyviä ohjelmointiongelmia ja osin kirjaan perustuvia kysymyksiä. Ohjelmointitehtävien ratkaisut ovat yksinkertaisia web-sovelluksia, joiden suoritusalustana on  [Node.js](https://nodejs.org/en/). Siihen tutustutaan *ensimmäisessä osassa* (1) ennen tietokanta-aiheisiin siirtymistä. *Toisessa osassa* (2) esillä on relaatiotietokanta ja sen käyttö sovellusohjelmissa perinteisellä SQL-rajapinnalla ja siten, että tietokannan tiedot näkyvät tyypillisinä ohjelmointikielen objekteina ([ORM](https://en.wikipedia.org/wiki/Object-relational_mapping)). Esimerkkinä relaatiotietokannoista on [SQLite][sqlite], jonka käyttö ei edellytä erillistä palvelinohjelmistoa. Kurssin *osissa 3-6* on esillä neljä NoSQL-tietokantojen  perustyyppiä: avain-arvopari, dokumentti, sarakeperhe ja graafi. Näistä kolme ensimmäistä ovat ns. [aggregaattitietokantoja](https://martinfowler.com/bliki/AggregateOrientedDatabase.html), joista esimerkkeinä toimivat [Riak][riak], [MongoDB][mongodb] ja [Cassandra][cassandra]. Graafitietokannoista tarkastelun kohteena on [Neo4j][neo4j]. *Viimeisessä osassa* (7) esillä on hybriditietokanta, [OrientDB][orientdb], jossa on sekä dokumentti- että graafitietokannan ominaisuudet. 
 
-Jokaiseen osaan liittyy 3h kontaktitilaisuus, jonka yhteydessä esitellään osan teema tehtäväsarjoineen sekä ratkaistaan ohjatusti teemaan liittyviä tehtäviä. Kurssin suorittaminen ei edellytä kontaktitilaisuuksiin osallistumista. Etäällä tapahtuvan opiskelun tukemista varten kurssilla on käytössä mm. Moodle-keskustelut ja tehtävien ratkaisuluonnoksiin liittyvät katselmukset.
+Kurssin jokaiseen osaan liittyy 3h kontaktitilaisuus, jonka yhteydessä esitellään osan teema tehtäväsarjoineen sekä ratkaistaan ohjatusti teemaan liittyviä tehtäviä. Kurssin suorittaminen ei edellytä kontaktitilaisuuksiin osallistumista. Etäällä tapahtuvan opiskelun tukemista varten kurssilla on käytössä mm. Moodle-keskustelut ja tehtävien ratkaisuluonnoksiin liittyvät katselmukset.
 
 
 [sqlite]: https://www.sqlite.org
@@ -64,3 +70,6 @@ Kurssi *ensimmäinen osa* tutustuttaa kurssilla käyttettavään kehitystyön pe
 [Suorituksen arvostelu](arvostelu)   
 [Tehtävien katselmointipyynnöt](katselmukset)   
 
+~~~
+tämä sivusto täydentyy ja päivittyy kurssitoteutuksen edetessä
+~~~
