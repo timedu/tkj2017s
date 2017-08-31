@@ -15,6 +15,11 @@ Sadalage, Pramod J. & Fowler, Martin (2013). [NoSQL Distilled: A Brief Guide to 
 
 *NoSQL Distilled* toimii kurssilukemistona siten, että kuhunkin kurssin seitsemään osaan sisältyy kirjaan perustuva kysymyssarja. Tentti sisältää vastaavanlaisia kysymyksiä. Kirjassa on n. 150 sivua, jotka jakaantuvat 15 lukuun. Kysymyssarjoissa käsitellään kirjaa luvuittain siten, että osien 1-6 kysymysten pohjana on aina kirjan kaksi lukua, jolloin osaan 7 jää kysymyksiä kolmesta viimeisestä luvuista.
 
+Googlen Play-kaupassa on kirjasta [ilmainen näyte][free-sample][^1], joka sisältää kirjan alkupään luvut.
+
+[free-sample]: https://play.google.com/store/books/details?id=AyY1a6-k3PIC
+[^1]: viitattu 31.8.2017
+
 Kirjan ydinkohtia on tuotu esiin sivuilla [NoSQL Databases: An Overview][nosql-overview] ja [Key Points from NoSQL Distilled][nosql-distilled-key-points]. Painovirheet on listattu [Errata-sivulla][nosql-distilled-errata].
 
 [nosql-overview]: https://www.thoughtworks.com/insights/blog/nosql-databases-overview
@@ -206,4 +211,6 @@ DataStax Academy.
 * [selenium-webdriver/phantomjs note](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/phantomjs.html)
 
 <http://chaijs.com>
+
+<br/>
 
