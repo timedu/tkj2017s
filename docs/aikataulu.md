@@ -27,7 +27,7 @@ Kurssi jakaantuun seitsämään osaan. Seuraavassa taulukossa on kuhunkin osaan 
 
 <br/>
 M
-: materiaalin julkaisupäivä; oletettavasti ainakin osa materiaalista on käytettävissä (ainakin luonnostasolla) jo aikaisemmin
+: materiaalin julkaisupäivä; ainakin osa materiaalista on tällöin käytettävissä; kaikki ao. osaa käsittelevä materiaali on saatavilla osaan liittyviin kontaktitunteihin mennessä
  
 K 
 : kontaktitunnit luokassa ATK-112 klo 12:15 - 15:00

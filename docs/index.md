@@ -64,6 +64,7 @@ Kurssi *ensimmäinen osa* tutustuttaa kurssilla käyttettavään kehitystyön pe
 [Koodin katselmointipyynnöt](https://moodle2.tut.fi/mod/forum/discuss.php?d=74758)   
 
 
+
 {% endcomment %}
 
 #### Lisätietoja
