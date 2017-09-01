@@ -1,7 +1,7 @@
 ---
 layout: exercise_page
 title: "Tehtävä 2.1: Kurssit ja opettajat, SQL (3p)"
-exercise_template_name: # W2E01.KurssitJaOpettajatSQL
+exercise_template_name: W2E01.KurssitJaOpettajatSQL
 exercise_discussion_id: 
 exercise_upload_id: 
 kesken: 1
