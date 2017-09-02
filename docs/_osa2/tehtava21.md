@@ -2,24 +2,29 @@
 layout: exercise_page
 title: "Tehtävä 2.1: Kurssit ja opettajat, SQL (3p)"
 exercise_template_name: W2E01.KurssitJaOpettajatSQL
-exercise_discussion_id: 
-exercise_upload_id: 
-kesken: 1
-julkaisu: 4.9.2017
-no_review: 1
+exercise_discussion_id: 83184
+exercise_upload_id: 338810
 ---
 
-Tässä tehtävässä käsitellään relaatiotietokantaa SQL-kielellä ohjelmointirajapinnan kautta. Tietokantana on [SQLite][SQLite] ja ohjelmointitajapintana [node-sqlite3].  
+Tässä käsitellään relaatiotietokantaa SQL-kielellä ohjelmointirajapinnan kautta. Tehtävänä on täydentää hieman keskeneräiseksi jäänyt tietokantasovellus. Tietokantana on [SQLite][SQLite] ja ohjelmointitajapintana [node-sqlite3].  
 
 [SQLite]: https://www.sqlite.org
 [node-sqlite3]: https://github.com/mapbox/node-sqlite3/blob/master/README.md
 
 Pohjakoodissa oleva tietokanta sisältää kaksi tietokantataulua: *Kurssi* ja *Opettaja*. Opettajalla voi olla useita kursseja, mutta kurssilla on enintään yksi opettaja. Laadi sovellus, jolla voidaan tarkastella tietokannan sisältämää tietoa. Sovellus käyttäytyy seuraavan sivukartan (Kuva 1) mukaan.
 
+{% comment %}
 
 ![sivukartta](https://www.lucidchart.com/publicSegments/view/d84f9961-ce43-4b79-bac2-7405afa830ac/image.png)
 
+{% endcomment %}
+
+
+![sivukartta](../img/w2e01.png){: style="display: block; margin: auto; margin-top: 10px; width: 350px;"}
+
 <small>Kuva 1. Sivukartta</small>
+
+
 
 Tehtäessä pyyntö polkuun `/kurssit`, tulee esiin *Kurssit* -sivu, joka esittää luettelon tietokannan sisältämistä kursseista nimen mukaisessa aakkosjärjestyksessä. Kurssin nimi toimii samalla linkkinä, jonka klikkaus tuo esiin *Kurssi* -sivun sisältäen yksittäisen kurssin tiedot. *Kurssi*-sivulle voidaan siirtyä myös suoraan tekemällä pyyntö seuraavanlaiseen polkuun: `/kurssit/PLA-32820` (polun loppuosa on kurssin tunnus). *Kurssi*-sivu esittää myös kurssin opettajan nimen, joka toimii samalla linkkinä *Opettaja* -sivulle.
 
@@ -82,7 +87,7 @@ module.exports = function (app) {
 
 {% endhighlight %}
 
-<small>Listaus 1.</small>
+<small>Listaus 1. Ote moduulista *opettajaController.js*</small>
 
 
 Tiedosto on Node-moduuli, joka siten julkaisee ulospäin sen, joka sijoitetaan moduulin koodissa muuttujan `module.exports` arvoksi. Tässä arvoksi sijoitetaan funktio. Sovelluksen päämoduuli `main.js` ottaa moduulin käyttöön seuraavasti:
@@ -95,13 +100,14 @@ require('./controllers/opettajaController')(app);
 
 {% endhighlight %}
 
-<small>Listaus 2.</small>
+<small>Listaus 2. Moduulin *opettajaController.js* käyttöönotto moduulissa *main.js*</small>
 
 
 *Listauksessa 2* `require('./controllers/opettajaController')` edustaa siis funktiota, joka *Listauksessa 1* sijoitetaan muuttujan `module.exports` arvoksi. Siten `require('./controllers/opettajaController')(app)` on tämän funktion kutsu. Parametrina oleva `app` on *Express*-sovelluskehyksen tarjoama [Application][Application]-objekti. Sen avulla voidaan mm. määritellä eri polkuihin tuleviin pyyntöihin liittyvä käsittely, joka tässä tehtävässä tapahtuu moduuleissa `opettajaControlle.js` ja `kurssiController.js`.
 
 [Application]: http://expressjs.com/en/4x/api.html#app
 
+*Opettajaluettelo*
 
 Seuraavassa *listauksessa 3* moduulista `opettajaController.js` on ote, joka liittyy opettajaluettelon tuottamiseen.
 
@@ -131,7 +137,7 @@ module.exports = function (app) {
 
 {% endhighlight %}
 
-<small>Listaus 3.</small>
+<small>Listaus 3. Ote moduulista *opettajaController.js*</small>
 
 Opettajaluettelo tuotetaan vasteena polkuun `/opettajat` tulevaan pyyntöön, mikä on määritelty listauksen rivillä 10 olevalla metodikutsulla: `app.get('/opettajat', function (req, res) {..})`. Pyyntöön vastataan välittämällä tietokannalle kysely ohjelmointirajapinnan kautta (Listaus 3 / rivi 12) :  
 
@@ -143,7 +149,7 @@ db.all(FindAllOpettajat, function (err, rows) {
 
 {% endhighlight %}
 
-<small>Listaus 4.</small>
+<small>Listaus 4. Tietokannan ohjelmointirajapinnan *all*-metodin kutsu</small>
 
 
 *Listauksen 3 rivillä 1* otetaan käyttöön moduulissa `db_connection.js` määritelty tietokantayhteys. Sen myötä moduulissa on objekti db, jonka kautta voidaan käsitellä tietokantaa. Käytettävissä olevat metodit löytyvät SQLite-tietokannan Node-sovelluksille tarkoitetun ohjelmointirajapinnan (API) [dokumentaatiosta][api-doc]. 
@@ -155,9 +161,109 @@ Tässä käytetään [`all`][all]-metodia, jolle annetaan kaksi parametria: SQL-
 
 [^fn1]: Tässä ei tarvitse toteuttaa virheenkäsittelyä
 
+
+*Listauksen 3 rivillä 14* muodostetaan pyyntöön vaste hahmontamalla *Handelbars*-näkymä, jolle välitetään tietokannasta luettu data. Tietojen välitys näkymälle tapahtuu `render`-metodin toisena parametrina olevassa objektissa, jolla tässä on `opettajat`-ominaisuus (*rivi 15*). Näkymän (`opettaja_list.hbs`) listauksessa (5) viitataan ominaisuuteen *rivillä 3*.
+
+
+{% highlight html linenos %}
+{% raw %}
+
+<h2>Opettajat</h2>
+<ul>
+    {{#each opettajat }}
+    <li>
+        <a href="/opettajat/{{id}}">{{sukunimi}}, {{etunimi}}</a>
+    </li>
+    {{/each}}
+</ul>
+
+{% endraw %}
+{% endhighlight %}
+
+<small>Listaus 5. Näkymä *opettaja_list.hbs* (Opettajaluettelo)</small>
+
+*Opettaja kursseineen*
+
+Yksittäisen opettajan tietojen hakuun liittyen tehtäväpohja sisältään rungon (*Listaus 6*):
+
+
+{% highlight javascript %}
+
+const FindOpettajaById = '';
+const FindOpettajanKurssit = '';
+
+module.exports = function (app) {
+
+    app.get('/opettajat/:id', function (req, res) {
+
+        res.render('opettaja_detail');
+    });
+
+};
+
+{% endhighlight %}
+
+<small>Listaus 6. Ote moduulista *opettajaController.js*</small>
+
+Pohja ehdottaa, että tietojen haku tietokannasta toteutetaan kahdella kyselyllä, mutta yhdelläkin kyselyllä ratkaisu onnistunee tässä yhtä hyvin. Silmäilemällä näkymän `opettaja_detail.hbs` koodia voidaan todeta, että tiedot tulisi välittää näkymällä ominaisuuksissa `opettaja` ja `kurssit`.
+
+Opettaja kursseineen esitetään, kun pyynnön polku on muotoa `/opettajat/:id`. Polun muuttuva osa (`:id`) löytyy [`Request`][request]-objektista: `req.params.id`.
+
+[request]: http://expressjs.com/en/4x/api.html#req
+
 #### kurssiController
 
-...
+Moduuli `kurssiController.js` (*Listaus 7*) vastaa rakenteeltaan edellä esitettyä. Kurssiluettelon muodostamista lukuunottamatta moduuli on pohjassa valmiina. 
+
+{% highlight javascript  linenos %}
+
+const db = require('../config/db_connection');
+
+const FindAllKurssit = '';
+const FindOneKurssi = '\
+    SELECT \
+        k.*,                            \
+        o.etunimi AS opettaja_etunimi,  \
+        o.sukunimi AS opettaja_sukunimi \
+    FROM kurssi AS k LEFT OUTER JOIN opettaja AS o \
+        ON k.opettaja_id = o.id         \
+    WHERE k.tunnus = ?';
+
+module.exports = function (app) {
+
+    app.get('/', function (req, res) {
+        res.redirect('/kurssit');
+    });
+
+    app.get('/kurssit', function (req, res) {
+        res.render('kurssi_list');
+    });
+
+    app.get('/kurssit/:tunnus', function (req, res) {
+        db.get(FindOneKurssi, req.params.tunnus, function (err, row) {
+            res.render('kurssi_detail', {
+                kurssi: row
+            });
+        });
+    });
+};
+
+
+{% endhighlight %}
+
+<small>Listaus 7. Ote moduulista *kurssiController.js*</small>
+
+*Rivillä 15* on määritelty polkuun `/` liittyvä käsittely: uudelleenohjaus polkuun `/kurssit`  so. kurssiluettelon muodostaminen pyynnön vasteeksi.
+
+
+*Rivill 23* käytetään tietokannan ohjelmointirajapinnan metodia [`get`][get], joka palauttaa kyselyn ensimmäisen rivin. Kysely sisältää `?`-merkillä osoitetun paikan parametrille (*rivi 11*), jolle annetaan arvo `get`-metodin kutsussa (`req.params.tunnus`; *rivi 23*). 
+
+[get]: https://github.com/mapbox/node-sqlite3/wiki/API#databasegetsql-param--callback
+
+SQL-komento *Listauksessa 7* on hieman monimutkaisempi verratuna  komentoon, joka esiintyy *Listauksessa 3*. [SQL-käsikirja][sql-manuaali] löytyy esim. [SQLite][SQLite]-sivustolta.
+
+
+[sql-manuaali]: https://www.sqlite.org/lang.html
 
 {% comment %}
 
@@ -167,6 +273,8 @@ Tässä käytetään [`all`][all]-metodia, jolle annetaan kaksi parametria: SQL-
 {% endhighlight %}
 
 <small>Listaus 4.</small>
+
+
 
 
 Moduulista näkyy ulospäin se, joka sijoitetaan muuttujan `module.exports` arvoksi eli tässä funktio, joka määrittelee kahteen polkuun liittyvät funktiot. Nämä siis suoritetaan kun ao. polkuun tulee pyyntö. Koodissa `(app) => { ... }` voisi olla myös `function(app) { ... }`. Sovelluksessa sen käynnistyksen yhteydessä `config.js` kutsuu tämän moduulin tarjoamaa funktiota `app`-parametrilla. 
@@ -235,6 +343,9 @@ Tässä käytetään rajapinnan [`get`][get] -metodia, koska kysely palauttaa ta
 
 {% endcomment %}
 
+<br/>
+
+Tässä tehtävässä SQL:n avulla  kuvattiin tietokantakyselyt, jotka sitten välitettiin suoritettavaksi ohjelmointirajapinnan kautta. [Seuraavassa tehtävässä](../tehtava22) sama sovellus toteutetaan ilman SQL:n käyttöä.
 
 <br/>
 
