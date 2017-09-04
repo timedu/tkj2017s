@@ -38,7 +38,7 @@ Sources
  ├── config
  │     ├── db_connection.js 
  │     ├── db_create.js 
- │     ├── db_data.js 
+ │     └── db_data.js 
  ├── controllers
  │     ├── kurssiController.js 
  │     └── opettajaController.js 

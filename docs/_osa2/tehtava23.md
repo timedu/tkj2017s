@@ -2,10 +2,10 @@
 layout: exercise_page
 title: "Tehtävä 2.3: Kurssit ja opettajat, CRUD (4p)"
 exercise_template_name: # W2E03.KurssitJaOpettajatCRUD
-exercise_discussion_id: 
+exercise_discussion_id: 83186
 exercise_upload_id: 
 kesken: 1
-julkaisu: 4.9.2017
+julkaisu: 5.9.2017
 no_review: 1
 ---
 

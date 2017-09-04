@@ -15,7 +15,7 @@ Sadalage, Pramod J. & Fowler, Martin (2013). [NoSQL Distilled: A Brief Guide to 
 
 *NoSQL Distilled* toimii kurssilukemistona siten, että kuhunkin kurssin seitsemään osaan sisältyy kirjaan perustuva kysymyssarja. Tentti sisältää vastaavanlaisia kysymyksiä. Kirjassa on n. 150 sivua, jotka jakaantuvat 15 lukuun. Kysymyssarjoissa käsitellään kirjaa luvuittain siten, että osien 1-6 kysymysten pohjana on aina kirjan kaksi lukua, jolloin osaan 7 jää kysymyksiä kolmesta viimeisestä luvuista.
 
-Googlen Play-kaupassa on kirjasta [ilmainen näyte][free-sample][^1], joka sisältää kirjan alkupään luvut.
+Googlen Play-kaupassa on kirjasta [ilmainen näyte][free-sample][^1], joka sisältää kirjan alkupään luvut. Verkosta löytynee myös muita ehkä laajempiakin näytekappaleita. 
 
 [free-sample]: https://play.google.com/store/books/details?id=AyY1a6-k3PIC
 [^1]: viitattu 31.8.2017
@@ -37,6 +37,8 @@ Seuraavat suhteellisen samaisältöiset Martin Fowlerin Youtube-videot pohjautuv
 [NoSQL-youtube-2]: https://www.youtube.com/watch?v=ASiU89Gl0F0
 [goto2012]: http://gotocon.com/aarhus-2012/presentation/Introduction%20to%20NoSQL
 [NoSQLmatters2013]: https://2013.nosql-matters.org/cgn/index.html%3Fp=1834.html
+
+Yliopiston kirjastossa ei ole kirjasta e-versiota. Perinteisiä niteitä on niukahkosti, mutta täydennystä odotellaan parhaillaan.
 
 
 #### Seven Databases
