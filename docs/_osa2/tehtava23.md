@@ -3,10 +3,7 @@ layout: exercise_page
 title: "Tehtävä 2.3: Kurssit ja opettajat, CRUD (4p)"
 exercise_template_name: W2E03.KurssitJaOpettajatCRUD
 exercise_discussion_id: 83186
-exercise_upload_id: 
-kesken: 1
-julkaisu: 5.9.2017
-no_review: 1
+exercise_upload_id: 339512
 ---
 
 
@@ -72,7 +69,7 @@ Sources
 
 Kontrollereita lukuunottamatta sovellus on jo rakennettu valmiiksi. Kontrollereihin[^2a] sisällytetään ORM-rajapinnan kautta tapahtuva tietokantakäsittely, johon sisältyy  kyselyjen lisäksi nyt tietokannan tilaa muuttavat operaatiot. Kyselyt voi kopioida edellisen tehtävän ratkaisusta[^1].
 
-[^2a]: muutamaan pyyntöön liittyvät funktiot ovat pohjassa valmiina
+Moduulissa `kurssiController.js` on valmiina koodi, joka esittää kurssin kaikki tiedot (pyyntö esim. polkuun `/kurssit/1`). Moduulissa `kurssiControllerCUD.js` on valmiina koodi, joka toteuttaa kurssin tietojen muutoksen (pyyntö esim. polkuun `/kurssit/1/update`).
 
 Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3]. Tietokanta datoineen muodostuu sovelluksen käynnistyksen yhteydessä, jos kansiosta ei löydy em. nimistä tiedostoa. Tietokanta näkyy kontrollereissa viittauksilla `Kurssi` ja `Opettaja`, jotka ovat *Sequelizen* [Model][model]-objekteja. 
 
@@ -84,142 +81,113 @@ Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3].
 
 [^4]: Pohjasta on toistaiseksi käytettävissä versio, joka ei sisällä testejä.
 
-{% comment %}
-
-
-![sivukartta](https://www.lucidchart.com/publicSegments/view/d84f9961-ce43-4b79-bac2-7405afa830ac/image.png)
-
-
 
 ### Vihjeitä ja lisätietoja
 
-Sovellukset kontrollerit rakentuvat seuraavasti:
-
-{% highlight javascript %}
-
-module.exports = (app) => {
-    // insert
-    app.get('/kurssit/insert', (req, res) => {});
-    app.post('/kurssit/insert', (req, res) => {});
-    // update
-    app.get('/kurssit/:id/update', (req, res) => {});
-    app.post('/kurssit/update', (req, res) => {});
-    // delete
-    app.get('/kurssit/:id/delete', (req, res) => {});
-    app.post('/kurssit/delete', (req, res) => {});
-    // select
-    app.get('/kurssit', function (req, res) {});
-    app.get('/kurssit/:id', function (req, res) {});
-};
-
-{% endhighlight %}
-
-<small>Listaus 1. Sovelluksen lähdekoodin struktuuri.</small>
-
 Kuhinkin ylläpito-operaatioon liittyy kaksi polkua, joista toiseen tulee pyyntö `GET`-metodilla ja toiseen `POST`-metodilla. *GET*-pyyntöön tuotetaan vasteeksi  ylläpito-operaatioon liittyvä lomake-sivu. *POST*-pyyntöön reagoidaan toteuttamalla  tietokantaoperaatio ja ohjaamalla käsittely sitten seuraavalle sivulle (ks. *Kuvan 2* sivukartta).
 
-Alla olevassa *Listauksessa 2* on esitetty metodi, joka tuottaa vasteeksi sivun (*Listaus 3*) sisältäen lomakkeen, jonka avulla voidaan ylläpitää kurssin tietoja.
+Alla olevassa *Listauksessa 1* on esitetty moduulista `kurssiControllerCUD.js` metodi, joka tuottaa vasteeksi sivun (*Listaus 3*) sisältäen lomakkeen, jonka avulla voidaan ylläpitää kurssin tietoja. Lomakkeelle välitetään muutoksen kohteena oleva *kurssi* sekä *opettajat* siltä varalta, että kurssille halutaan muutoksen yhteydessä valita toinen opettaja. 
 
 {% highlight javascript %}
 
-app.get('/kurssit/:id/update', (req, res) => {
+   app.get('/kurssit/:id/update', function (req, res) {
 
-   global.Kurssi.findById(req.params.id).then((kurssi) => {
+      Kurssi.findById(req.params.id).then(function(kurssi) {
 
-      if (!kurssi) {
-         res.render('kurssi');
-         return;
-      }
+         if (!kurssi) {
+            res.render('kurssi_detail');
+            return;
+         }
 
-      global.Opettaja.findAll({order: 'sukunimi'}).then((opettajat) => {
+         Opettaja.findAll({order: ['sukunimi']}).then(function(opettajat) {
 
-         opettajat.forEach((opettaja) => {
-            opettaja.selected = opettaja.id === kurssi.opettaja_id ? 'selected' : '';
+            // ao. option-elementin merkintä valituksi
+            opettajat.forEach(function(opettaja) {
+               opettaja.selected = opettaja.id === kurssi.opettajaId ? 'selected' : '';
+            });
+
+            res.render('kurssi_update', {
+               kurssi: kurssi,
+               opettajat: opettajat
+            });
+            
          });
-         
-         res.render('kurssi_update', {
-            kurssi: kurssi,
-            opettajat: opettajat
-         });
-         
       });
-
    });
-});
-
+   
 {% endhighlight %}
 
-<small>Listaus 2. Ote tiedostosta *kurssiKontroller.js*.</small>
+<small>Listaus 1. Ote tiedostosta *kurssiKontrollerCUD.js*.</small>
 
 
 Polussa on mukana pyyntöön liittyvä parametri. Polku voi olla esim. `/kurssit/10/update`, jossa `10` on muutoksen kohteena olevan kurssin `id`-attribuutin arvo tietokannassa. Polussa olevaan `id`-parametriin päästään käsiksi viittauksella `req.params.id`, joka perusteella tietokannasta haetaa rivi käyttäen `findById` -metodia. Jos riviä ei jostakin syystä löydy, hahmonnetaan näkymä `kurssi.hbs` ilman dataa, ja päätetään funktion suoritus tähän.
 
-Jos tietokannasta saadaan muutoksen kohteena oleva kurssi, luettaan tietokannasta `findAll`-metodilla kaikki opettajat lomakkeella olevaa `select`-elementtiä varten (ks. *Listaus 3*). Jotta lomakkeella olisi oikea opettaja valittuna, kullekin opettajalle määritellään tässä `selected`-ominaisuus, jonka arvo määrää aktiivisen valinnan (*Listaus 3*). Tämän jälkeen hahmonnetaan näkymä `kurssi_update.hbs` (*Listaus 3*) so. tuotetaan pyynnön vasteeksi muutoslomakkeen sisältävä sivu.
+Jos tietokannasta saadaan muutoksen kohteena oleva kurssi, luettaan tietokannasta `findAll`-metodilla kaikki opettajat lomakkeella olevaa `select`-elementtiä varten (ks. *Listaus 2*). Jotta lomakkeella olisi oikea opettaja valittuna, kullekin opettajalle määritellään tässä `selected`-ominaisuus, jonka arvo määrää aktiivisen valinnan (*Listaus 2*). Tämän jälkeen hahmonnetaan näkymä `kurssi_update.hbs` (*Listaus 2*) so. tuotetaan pyynnön vasteeksi muutoslomakkeen sisältävä sivu.
 
 {% highlight html %}
 {% raw %}
 
-
 <h2>Päivitä kurssi</h2>
+
 <form method="POST" action="/kurssit/update">
-   <div>
-      Tunnus: 
-      <input name="tunnus" value="{{kurssi.tunnus}}"/>
-   </div>
-   <div>
-      Nimi: 
-      <input name="nimi" value="{{kurssi.nimi}}"/>
-   </div>
-   <div>
-      Laajuus: 
-      <input name="laajuus" value="{{kurssi.laajuus}}"/>
-   </div>
-   <div>
-      Opettaja: 
-      <select name="opettaja_id">
-         <option></option>
-         {{#each opettajat}}
-         <option value="{{id}}" {{selected}}>{{sukunimi}}, {{etunimi}}</option>
-         {{/each}}
-      </select>
-   </div>
-   <br/>
-   <input type="hidden" name="id" value="{{kurssi.id}}"/>
-   <input type="submit" name="_update" value="Talleta"/>
-   <input type="submit" name="_cancel" value="Peruuta"/>
+    <div>
+        Tunnus: 
+        <input name="tunnus" value="{{kurssi.tunnus}}"/>
+    </div>
+    <div>
+        Nimi: 
+        <input name="nimi" value="{{kurssi.nimi}}"/>
+    </div>
+    <div>
+        Laajuus: 
+        <input name="laajuus" value="{{kurssi.laajuus}}"/>
+    </div>
+    <div>
+        Opettaja: 
+        <select name="opettajaId">
+            <option></option>
+            {{#each opettajat}}
+            <option value="{{id}}" {{selected}}>{{sukunimi}}, {{etunimi}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <br/>
+    <input type="hidden" name="id" value="{{kurssi.id}}"/>    
+    <input type="submit" name="_update" value="Talleta"/>
+    <input type="submit" name="_cancel" value="Peruuta"/>
 </form>
+
 
 {% endraw %}
 {% endhighlight %}
 
-<small>Listaus 3. Näkymä *kurssi_insert.hbs*.</small>
+<small>Listaus 2. Näkymä *kurssi_update.hbs*.</small>
 
-Lomakeen (*Listaus 3*) *submit*-napin klikkaus aikaansaa `POST`-metodilla polkuun `/kurssit/update` pyynnön, joka käsitellään *Listauksen 4*  koodilla.
+Lomakeen (*Listaus 2*) *submit*-napin klikkaus aikaansaa `POST`-metodilla polkuun `/kurssit/update` pyynnön, joka käsitellään *Listauksen 3*  koodilla.
 
 {% highlight javascript %}
 
-app.post('/kurssit/update', (req, res) => {
+   app.post('/kurssit/update', function (req, res){
 
-   if (req.body._cancel) {
-      res.redirect('/kurssit/' + req.body.id);
-      return;
-   }
+      if (req.body._cancel) {
+         res.redirect('/kurssit/' + req.body.id);
+         return;
+      }
 
-   global.Kurssi.findById(req.body.id).then((kurssi) => {
+      Kurssi.findById(req.body.id).then(function(kurssi) {
 
-      if (!req.body.opettaja_id.length)
-         req.body.opettaja_id = null;
+         if (!req.body.opettajaId.length)
+            req.body.opettajaId = null;
 
-      kurssi.update(req.body).then((kurssi) => {
-         res.redirect('/kurssit/' + kurssi.id);
+         kurssi.update(req.body).then(function(kurssi) {
+            res.redirect('/kurssit/' + kurssi.id);
+         });
       });
    });
 
-});
-
 {% endhighlight %}
 
-<small>Listaus 4. Ote tiedostosta *kurssiKontroller.js*.</small>
+<small>Listaus 3. Ote tiedostosta *kurssiControllerCUD.js*.</small>
 
 Lomakkeen lähettämä data löytyy `req.body`-olion[^5] attribuuteista. Käsittelyn alussa selvitetään, onko käyttäjä lähettänyt lomakkeen klikkaamalla *Peruuta*-painiketta. Jos näin on, palautetaan käsittely kurssitietojen erittely -sivulle (ks. *Kuva 2*). Muussa tapauksessa luetaan muutettava kurssi tietokannasta.
 
@@ -232,72 +200,11 @@ Muutos tietokantaan voidaan toteuttaa [`update`][update]-metodilla, jonka suorit
 
 [`update`][update]-metodin lisäksi tehtävän ratkaisussa tarvittaneen [`create`][create]- ja [`destroy`][destroy] -metodeja. Näiden käytöstä löytyy esimerkkejä *Sequelize*-dokumentaation kohdasta [Instances][instances].
 
-[update]: http://docs.sequelizejs.com/en/v3/api/instance/#updateupdates-options-promisethis
-[create]: http://docs.sequelizejs.com/en/v3/api/model/#createvalues-options-promiseinstance
-[destroy]: http://docs.sequelizejs.com/en/v3/api/instance/#destroyoptions-promiseundefined
+[update]: http://docs.sequelizejs.com/class/lib/model.js~Model.html#instance-method-update
+[create]: http://docs.sequelizejs.com/class/lib/model.js~Model.html#static-method-create
+[destroy]: http://docs.sequelizejs.com/class/lib/model.js~Model.html#instance-method-destroy
 
-[instances]: http://docs.sequelizejs.com/en/v3/docs/instances/
-
-#### Muutoksia
-
-170121
-
-* uusi projektipohja (sivun alussa olevan linkin kohdetta ei kuitenkaan ole muutettu);  ks. tarkemmin alla kohdassa "Tehtävän pohjakoodi, versio 170121
-
-
-170119
-
-* uusi projektipohja (kattavammat testit; korjauksia näkymiin)
-
-#### Tehtävän pohjakoodi, versio 170121
-
-[Tehtäväpohjan tähän versioon][uusi_pohja] on tehty tiettyjä arkkitehtuuritason muutoksia. Tehävän ratkaisun voi laatia tähän [uuteen pohjaan][uusi_pohja] tai siihen, jonka voi ladata sivun alussa olevasta linkistä. Uutta pohjaa käytettäessä tehtävän **ratkaisuna palautetaan** zip-arkistoituna sovelluksen lähdekoodin `controllers`-kansio.
-
-[uusi_pohja]: /tkj2017k/pohjat/W2E03.KurssitJaOpettajatCRUD.v2.zip
-
-
-Lähdekoodi rakentuu seuraavasti:
-
-~~~
-Sources
- ├── main.js
- ├── configs
- │     ├── log.js 
- │     ├── db_connection.js 
- │     ├── db_seed.js 
- │     └── db_seed 
- │           ├── kurssit.csv 
- │           └── opettajat.csv  
- ├── controllers
- │     ├── kurssit.js 
- │     ├── opettajat.js 
- │     ├── kurssit 
- │     │    ├── kurssit_insert.js  
- │     │    ├── kurssit_remove.js 
- │     │    ├── kurssit_select.js  
- │     │    └── kurssit_update.js   
- │     └── opettajat 
- │          ├── opettajat_insert.js  
- │          ├── opettajat_remove.js 
- │          ├── opettajat_select.js  
- │          └── opettajat_update.js   
- ├── models
- │     ├── Kurssi.js 
- │     └── Opettajat.js  
- └── views
-~~~
-
-<small>Kuva 4. Sovelluksen lähdekoodin struktuuri (versio 170121).</small>
-
-
-Kuten aiemmin niin myös tässä tehtävänä on täydentää sovelluksen kontrollerien funktioiden runkoja. Tässä konrollerit on jatettu koodirivimäärältään pienempiin moduuleihin. Täydennettävät tiedostot löytyvät `kurssit`- ja `opettajat`-kansioista.
-
-Sovellus rakentuu nyt niin, että tiedostot `kurssit.js`  ja `opettajat.js` määrittelevät polut, joihin sovellus reagoi hakemistoisaa `kurssit` ja `opettajat` olevien tiedostojen koodilla. Määritellyt polut kytketään sovellukseen päämoduulissa `main.js`.
-
-Käsiteltävä tietokanta tässä luodaan ORM:n avulla. Pohjan edellisessä versiossa olevan `models/mappins.js` -tiedoston sisältö on jaettu tiedostoihin `models/Kurssi.js`, `models/Opettaja.js` ja `configs/db_connection.js`.
-
-
-{% endcomment %}
+[instances]: http://docs.sequelizejs.com/manual/tutorial/instances.html
 
 
 <br/>

@@ -57,7 +57,9 @@ Kontrollereita lukuunottamatta sovellus on jo rakennettu valmiiksi. Kontrollerei
 
 Pohjakoodi on rakennettu niin, että sovelluksen käynnistyksen yhteydessä muodostuu muistinvarainen tietokanta, johon otetaan yhteys (`db_connection.js`). Moduuli `db_create.js` perustaa tietokantataulut ja tallettaa niihin esimerkkidatan, joka on määritelty moduulissa `db_data.js`.
 
-**Palauta** tehtävän ratkaisuna tiedostot `kurssiController.js` ja `opettajaController.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. Sovelluksen on oltava käynnissä testejä ajettaessa.
+**Palauta** tehtävän ratkaisuna tiedostot `kurssiController.js` ja `opettajaController.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi[^0a]. Sovelluksen on oltava käynnissä testejä ajettaessa.
+
+[^0a]: Jos sovellus vaikuttaa toimivan kuvauksen mukaan, mutta testit tuottavat runsaasti virheilmoituksia, kannattaa tarkistaa ainakin, onko luetteloiden lajittelujärjestys odotusten mukainen (huom. myös opettajakohtainen kurssiluettelo).
 
 
 ### Vihjeitä ja lisätietoja
