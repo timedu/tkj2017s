@@ -10,25 +10,17 @@ no_review: 1
 ---
 
 
-Täydennä [Tehtävän 2.2](../tehtava22) ratkaisua siten, että se sisältää toiminnot tietokannan tietojen ylläpitoa[^2] varten.   
-
-[^2]: lisäys, muutos ja poisto
-
-
-{% comment %}
-
-
+Täydennä [Tehtävän 2.2](../tehtava22) ratkaisua siten, että se sisältää kyselyjen[^1] lisäksi toiminnot tietokannan tietojen ylläpitoa[^2] varten.   
 
 
 [^1]: tietojen kyselyihin liittyen tässä on edellisiin tehtäviin verrattuna sellainen pieni muutos, että yksittäisen kurssin tiedot haetaan `id`-attribuutin perusteella `tunnus`-attribuutin sijaan 
 
-> Tehtävälle on käytettävissä myös toinen, arkkitehtuuriltaan hieman erilainen, pohjakoodi, jonka voi halutessaan ottaa oman ratkaisun lähtökohdaksi (ks. sivun lopussa kohta [Tehtävän pohjakoodi, versio 170121](#tehtvn-pohjakoodi-versio-170121)).
-
+[^2]: lisäys, muutos ja poisto
 
 Edellisten tehtävien ([2.1](../tehtava21) ja [2.2](../tehtava22)) ratkaisujen sivukartta on seuraavanlainen:
 
 
-![sivukartta](https://www.lucidchart.com/publicSegments/view/d84f9961-ce43-4b79-bac2-7405afa830ac/image.png)
+![sivukartta](../img/w2e01.png){: style="display: block; margin: auto; margin-top: 10px; width: 300px;"}
 
 <small>Kuva 1. Sivukartta: Kurssien ja opettajien *luettelot* ja *eritelyt*.</small>
 
@@ -36,32 +28,39 @@ Edellisten tehtävien ([2.1](../tehtava21) ja [2.2](../tehtava22)) ratkaisujen s
 Tässä sivukartta laajenee sekä kurssien että opettajien osalta siten, että kuhunkin tietojen ylläpito-operaatioon (lisäys, muutos, poisto) liittyy oma lomakesivunsa (*Kuva 2*).
 
 
-![sivukartta](../img/w2e03.png)
+![sivukartta](../img/w2e03.png){: style="display: block; margin: auto; margin-top: 10px; width: 500px;"}
 
 <small>Kuva 2. Sivukartta: sisältää lomakkeet (*uusi*, *muuta* ja *poista*) tietojen ylläpitoa varten.</small>
 
 
 *Luettelo*-sivulta voidaa siirtyä lomakkeelle (*uusi*), jolla voi syöttää uuden rivin tietokantaan. Muille lomakkeille (*muuta*, *poista*) voidaan siirtyä *erittely*-sivulta. Kullakin lomakkeella voi joko vahvistaa tai peruuttaa ylläpito-operaation ao. painikkeiden avulla. *Kuvassa 2* on esitetty, mille sivuille käsittely siirtyy lomakesivuita painikkeiden klikkauksen seurauksena. 
 
-Sovelluksen lähdekoodi jäsentyy edellisen tehtävän kanssa samalla tavalla (*Kuva 3*). Näkymiä rakenteessa on kuitenkin aiempaa enemmän.
+Sovelluksen lähdekoodi jäsentyy edellisen tehtävän kanssa samalla tavalla (*Kuva 3*). Näkymiä rakenteessa on kuitenkin aiempaa enemmän sekä ylläpitotoiminnoille (*create, update, delete*) on omat kontrollerinsa (`kurssiControllerCUD.js` ja `opettajaControllerCUD.js`).
 
 ~~~
 Sources
  ├── main.js
- ├── configs
+ ├── config
+ │     ├── db_connection.js       // tietokantayhteys
+ │     ├── db_create.js           // oletusdatan talletus tietokantaan
+ │     └── db_data.js             // oletusdata
  ├── controllers
- │     ├── kurssiController.js 
- │     └── opettajaController.js 
+ │     ├── kurssiController.js      // kyselyt (luettelo, erittely)
+ │     ├── kurssiControllerCUD.js   // lisäys, muutos, poisto
+ │     ├── kurssiController.js      // kyselyt (luettelo, erittely)
+ │     └── opettajaControllerCUD.js // lisäys, muutos, poisto
  ├── models
+ │     ├── Kurssi.js 
+ │     └── Opettaja.js 
  └── views
-     ├── kurssi.hbs
+     ├── kurssi_detail.hbs
      ├── kurssi_list.hbs
-     ├── kurssi_insert.hbs
+     ├── kurssi_create.hbs
      ├── kurssi_update.hbs
      ├── kurssi_delete.hbs
-     ├── opettaja.hbs
+     ├── opettaja_detail.hbs
      ├── opettaja_list.hbs
-     ├── opettaja_insert.hbs
+     ├── opettaja_create.hbs
      ├── opettaja_update.hbs
      ├── opettaja_delete.hbs
      └── layouts
@@ -75,13 +74,21 @@ Kontrollereita lukuunottamatta sovellus on jo rakennettu valmiiksi. Kontrollerei
 
 [^2a]: muutamaan pyyntöön liittyvät funktiot ovat pohjassa valmiina
 
-Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3]. Tietokanta datoineen muodostuu sovelluksen käynnistyksen yhteydessä, jos kansiosta ei löydy em. nimistä tiedostoa. Tietokanta näkyy kontrollereissa viittauksilla `global.Kurssi` ja `global.Opettaja`, jotka ovat Sequelizen [Model][model]-objekteja. 
+Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3]. Tietokanta datoineen muodostuu sovelluksen käynnistyksen yhteydessä, jos kansiosta ei löydy em. nimistä tiedostoa. Tietokanta näkyy kontrollereissa viittauksilla `Kurssi` ja `Opettaja`, jotka ovat *Sequelizen* [Model][model]-objekteja. 
 
-[model]: http://docs.sequelizejs.com/en/v3/api/model/
+[^3]: `database`-kansio näkyy NetBeansin *Files*-ikkunassa, mutta ei *Projects*-ikkunassa
 
-[^3]: `databases`-kansio näkyy NetBeansin *Files*-ikkunassa, mutta ei *Projects*-ikkunassa
+[model]:http://docs.sequelizejs.com/class/lib/model.js~Model.html
 
-**Palauta** tehtävän ratkaisuna tiedostot `kurssiController.js` ja `opettajaController.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. Sovelluksen on oltava käynnissä testejä ajettaessa ja tietokannan tulee olla alkutilassaan.
+**Palauta** tehtävän ratkaisuna tiedostot `kurssiControllerCUD.js` ja `opettajaControllerCUD.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit[^4] menevät läpi. Sovelluksen on oltava käynnissä testejä ajettaessa ja tietokannan tulee olla alkutilassaan.
+
+[^4]: Pohjasta on toistaiseksi käytettävissä versio, joka ei sisällä testejä.
+
+{% comment %}
+
+
+![sivukartta](https://www.lucidchart.com/publicSegments/view/d84f9961-ce43-4b79-bac2-7405afa830ac/image.png)
+
 
 
 ### Vihjeitä ja lisätietoja
