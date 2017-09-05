@@ -14,7 +14,7 @@ Laadi relaatiotietokantaa käsittelevä sovellus, joka käyttäytyy kuten [Teht�
 [sequelize]: http://www.sequelizejs.com
 
 
-Sovelluksen lähdekoodi jäsentyy edellisen tehtävän kanssa samalla tavalla (*Kuva 1*). Uusina moduuleina kuitenkin tässä ovat`models`-kansiossa sijaitsevat, tiedostot `Kurssi.js` ja `Opettaja.js`, jotka määrittelevät, mitä tietokannan tietoja sovelluksessa käsitellään. Näiden määrittelyjen myötä sovelluksessa on käytettävissä `Kurssi`- ja `Opettaja`-objektit, joiden kautta tietokannan käsittely tapahtuu.
+Sovelluksen lähdekoodi jäsentyy edellisen tehtävän kanssa samalla tavalla (*Kuva 1*). Uusina moduuleina kuitenkin tässä ovat`models`-kansiossa sijaitsevat tiedostot, `Kurssi.js` ja `Opettaja.js`, jotka määrittelevät, mitä tietokannan tietoja sovelluksessa käsitellään. Näiden määrittelyjen myötä sovelluksessa on käytettävissä `Kurssi`- ja `Opettaja`-objektit, joiden kautta tietokannan käsittely tapahtuu.
 
 ~~~
 Sources
@@ -77,7 +77,7 @@ module.exports = db;
 
 [Sequelize-object]: http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html
 
-Tehtäväpohjan tiedostossa `Kurssi.js` (*Listaus 2*) ja `Opettaja.js` (*Listaus 3*)  on kuvattu sovelluksessa käytettävien objektien liittyminen tietokantaan. Tiedostoissa määritellään tietokannan tauluja vastaavat [`Model`][Model-object]-objektit. Taulut muodostuvat tietokantaan *Sequelize*-objektin `define`-metodin (esim. *Listaus 2/Rivi 6*) kutsun myötä, jos niitä ei ole ennalta olemassa. 
+Tehtäväpohjan tiedostoissa `Kurssi.js` (*Listaus 2*) ja `Opettaja.js` (*Listaus 3*)  on kuvattu sovelluksessa käytettävien objektien liittyminen tietokantaan. Tiedostoissa määritellään tietokannan tauluja vastaavat [`Model`][Model-object]-objektit. Taulut muodostuvat tietokantaan *Sequelize*-objektin `define`-metodin (esim. *Listaus 2/Rivi 6*) kutsun myötä, jos niitä ei ole ennalta olemassa. 
 
 
 [Model-object]: http://docs.sequelizejs.com/class/lib/model.js~Model.html
@@ -224,7 +224,7 @@ Jos halutaan, että tuloksessa on mukana opettajan kurssit, koodia on hieman tä
 
 *Listauksen 7* koodi ei vielä lajittele opettajan kursseja. Lajittelun edellyttämä täydennys on esitetty *listauksessa 4*.
 
-Tämän kontrollerin osalta tehtäväksi jääneen metodin  koodi (aakkosjärjestyksessa olevan opettajaluettelon tuottaminen) on edellä kuvattua huomattavasti yksinkertaisempi. [`Model`][Model-object]-objektin tarjoamista metodeista ongelnma ratkaisee `findAll`, jonka käytöstä löytyy esimerkkejä [Sequelize-tutoriaalista][tutorial-findAll].  
+Tämän kontrollerin osalta tehtäväksi jääneen metodin  koodi (aakkosjärjestyksessa olevan opettajaluettelon tuottaminen) on edellä kuvattua huomattavasti yksinkertaisempi. [`Model`][Model-object]-objektin tarjoamista metodeista ongelman ratkaisee `findAll`, jonka käytöstä löytyy esimerkkejä esim. [Sequelize-tutoriaalista][tutorial-findAll].  
 
 [tutorial-findAll]: http://docs.sequelizejs.com/manual/tutorial/querying.html
 
