@@ -7,15 +7,9 @@ exercise_upload_id: 339512
 ---
 
 
-Täydennä [Tehtävän 2.2](../tehtava22) ratkaisua siten, että se sisältää kyselyjen[^1] lisäksi toiminnot tietokannan tietojen ylläpitoa[^2] varten.   
-
-
-[^1]: tietojen kyselyihin liittyen tässä on edellisiin tehtäviin verrattuna sellainen pieni muutos, että yksittäisen kurssin tiedot haetaan `id`-attribuutin perusteella `tunnus`-attribuutin sijaan 
-
-[^2]: lisäys, muutos ja poisto
+Täydennä [Tehtävän 2.2](../tehtava22) ratkaisua siten, että se sisältää kyselyjen lisäksi toiminnot tietokannan tietojen ylläpitoa varten: CRUD - Create, Retrieve, Update, Delete.
 
 Edellisten tehtävien ([2.1](../tehtava21) ja [2.2](../tehtava22)) ratkaisujen sivukartta on seuraavanlainen:
-
 
 ![sivukartta](../img/w2e01.png){: style="display: block; margin: auto; margin-top: 10px; width: 300px;"}
 
@@ -38,28 +32,28 @@ Sovelluksen lähdekoodi jäsentyy edellisen tehtävän kanssa samalla tavalla (*
 Sources
  ├── main.js
  ├── config
- │     ├── db_connection.js       // tietokantayhteys
- │     ├── db_create.js           // oletusdatan talletus tietokantaan
- │     └── db_data.js             // oletusdata
+ │     ├── db_connection.js     // tietokantayhteys
+ │     ├── db_create.js         // oletusdatan talletus tietokantaan
+ │     └── db_data.js           // oletusdata
  ├── controllers
  │     ├── kurssiController.js      // kyselyt (luettelo, erittely)
  │     ├── kurssiControllerCUD.js   // lisäys, muutos, poisto
  │     ├── kurssiController.js      // kyselyt (luettelo, erittely)
  │     └── opettajaControllerCUD.js // lisäys, muutos, poisto
  ├── models
- │     ├── Kurssi.js 
- │     └── Opettaja.js 
+ │     ├── Kurssi.js            // kurssin "mapping" tietokantaan
+ │     └── Opettaja.js          // opettajan "mapping" tietokantaan
  └── views
-     ├── kurssi_detail.hbs
-     ├── kurssi_list.hbs
-     ├── kurssi_create.hbs
-     ├── kurssi_update.hbs
-     ├── kurssi_delete.hbs
-     ├── opettaja_detail.hbs
-     ├── opettaja_list.hbs
-     ├── opettaja_create.hbs
-     ├── opettaja_update.hbs
-     ├── opettaja_delete.hbs
+     ├── kurssi_detail.hbs      // yksitäinen kurssi
+     ├── kurssi_list.hbs        // kurssiluettelo
+     ├── kurssi_create.hbs      // lomake uudelle kurssille
+     ├── kurssi_update.hbs      // lomake kurssin muutokselle
+     ├── kurssi_delete.hbs      // lomake kussin poistolle
+     ├── opettaja_detail.hbs    // yksittäinen opettaja
+     ├── opettaja_list.hbs      // opettajaluettelo
+     ├── opettaja_create.hbs    // lomake uudelle opettajalle
+     ├── opettaja_update.hbs    // lomake opettajan muutokselle
+     ├── opettaja_delete.hbs    // lomake opettajan poistolle
      └── layouts
           └── main.hbs                 
 ~~~
@@ -67,9 +61,15 @@ Sources
 <small>Kuva 3. Sovelluksen lähdekoodin struktuuri.</small>
 
 
-Kontrollereita lukuunottamatta sovellus on jo rakennettu valmiiksi. Kontrollereihin[^2a] sisällytetään ORM-rajapinnan kautta tapahtuva tietokantakäsittely, johon sisältyy  kyselyjen lisäksi nyt tietokannan tilaa muuttavat operaatiot. Kyselyt voi kopioida edellisen tehtävän ratkaisusta[^1].
+Kontrollereita lukuunottamatta sovellus on jo rakennettu valmiiksi. Kontrollereihin sisällytetään ORM-rajapinnan kautta tapahtuva tietokantakäsittely, johon sisältyy  kyselyjen lisäksi nyt myös tietokannan tilaa muuttavat operaatiot. 
 
-Moduulissa `kurssiController.js` on valmiina koodi, joka esittää kurssin kaikki tiedot (pyyntö esim. polkuun `/kurssit/1`). Moduulissa `kurssiControllerCUD.js` on valmiina koodi, joka toteuttaa kurssin tietojen muutoksen (pyyntö esim. polkuun `/kurssit/1/update`).
+
+Kyselyt moduuleihin `kurssiController.js` ja `opettajaController.js` voi kopioida edellisen tehtävän ratkaisusta. Tietojen kyselyihin liittyen tässä on edellisiin tehtäviin verrattuna sellainen pieni muutos, että yksittäisen kurssin tiedot haetaan `id`-attribuutin perusteella `tunnus`-attribuutin sijaan. Moduulissa `kurssiController.js` on valmiina tähän liittyvä koodi, joka siis esittää yksittäisen kurssin tiedot (pyyntö esim. polkuun `/kurssit/1`). 
+
+
+Moduulissa `kurssiControllerCUD.js` on valmiina kurssin muutokseen ("update") liittyvä koodi (pyyntö esim. polkuun `/kurssit/1/update`). Laadittavaksi jää  *kurssin lisäys* ja *kurssin poisto* ("create", "delete").
+
+Moduulissa `opettajaControllerCUD.js` on valmiina *opettajan lisäykseen ja poistoon*  ("create", "delete") liittyvä koodi. Laadittavaksi jää  *opettajan muutos* ("update").
 
 Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3]. Tietokanta datoineen muodostuu sovelluksen käynnistyksen yhteydessä, jos kansiosta ei löydy em. nimistä tiedostoa. Tietokanta näkyy kontrollereissa viittauksilla `Kurssi` ja `Opettaja`, jotka ovat *Sequelizen* [Model][model]-objekteja. 
 
@@ -77,16 +77,20 @@ Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3].
 
 [model]:http://docs.sequelizejs.com/class/lib/model.js~Model.html
 
-**Palauta** tehtävän ratkaisuna tiedostot `kurssiControllerCUD.js` ja `opettajaControllerCUD.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit[^4] menevät läpi. Sovelluksen on oltava käynnissä testejä ajettaessa ja tietokannan tulee olla alkutilassaan.
+**Palauta** tehtävän ratkaisuna tiedostot `kurssiControllerCUD.js` ja `opettajaControllerCUD.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. 
 
-[^4]: Pohjasta on toistaiseksi käytettävissä versio, joka ei sisällä testejä.
+Sovelluksen on oltava käynnissä testejä ajettaessa ja tietokannan tulee olla alkutilassaan. Tarvittaessa tietokannan (`database`-kansiossa oleva tiedoston `koulu.sqlite`) voi poistaa ja käynnistää sovelluksen uudelleen, jolloin tietokanta muodostuu uudellee alkutilaansa.
 
 
 ### Vihjeitä ja lisätietoja
 
 Kuhinkin ylläpito-operaatioon liittyy kaksi polkua, joista toiseen tulee pyyntö `GET`-metodilla ja toiseen `POST`-metodilla. *GET*-pyyntöön tuotetaan vasteeksi  ylläpito-operaatioon liittyvä lomake-sivu. *POST*-pyyntöön reagoidaan toteuttamalla  tietokantaoperaatio ja ohjaamalla käsittely sitten seuraavalle sivulle (ks. *Kuvan 2* sivukartta).
 
-Alla olevassa *Listauksessa 1* on esitetty moduulista `kurssiControllerCUD.js` metodi, joka tuottaa vasteeksi sivun (*Listaus 3*) sisältäen lomakkeen, jonka avulla voidaan ylläpitää kurssin tietoja. Lomakkeelle välitetään muutoksen kohteena oleva *kurssi* sekä *opettajat* siltä varalta, että kurssille halutaan muutoksen yhteydessä valita toinen opettaja. 
+Moduuleihin `kurssiControllerCUD.js` ja `opettajaControllerCUD.js` on kirjattu kommentteja, jotka kuvaavat yläpito-operaatioden etenemistä.
+
+Alla olevassa *Listauksessa 1* on esitetty moduulista `kurssiControllerCUD.js` metodi, joka tuottaa vasteeksi sivun (*Listaus 3*) sisältäen lomakkeen, jonka avulla voidaan muuttaa kurssin tietoja[^1]. Lomakkeelle välitetään muutoksen kohteena oleva *kurssi* sekä *opettajat* siltä varalta, että kurssille halutaan muutoksen yhteydessä valita toinen opettaja. 
+
+[^1]: Mm. tämä koodi löytyy valmiina tehtäväpohjassa.
 
 {% highlight javascript %}
 
