@@ -6,6 +6,6 @@ exercise_discussion_id:
 exercise_upload_id: 
 no_review: 1
 kesken: 1
-julkaisu: 11.8.2017
+julkaisu: 11.9.2017
 ---
 

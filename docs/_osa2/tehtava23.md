@@ -79,7 +79,7 @@ Tietokanta sijaitsee projektin `database`-kansiossa nimellä `koulu.sqlite`[^3].
 
 **Palauta** tehtävän ratkaisuna tiedostot `kurssiControllerCUD.js` ja `opettajaControllerCUD.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. 
 
-Sovelluksen on oltava käynnissä testejä ajettaessa ja tietokannan tulee olla alkutilassaan. Tarvittaessa tietokannan (`database`-kansiossa oleva tiedoston `koulu.sqlite`) voi poistaa ja käynnistää sovelluksen uudelleen, jolloin tietokanta muodostuu uudellee alkutilaansa.
+Sovelluksen on oltava käynnissä testejä ajettaessa ja tietokannan tulee olla alkutilassaan. Tarvittaessa tietokannan (`database`-kansiossa oleva tiedoston `koulu.sqlite`) voi poistaa ja käynnistää sovelluksen uudelleen, jolloin tietokanta muodostuu uudelleen alkutilaansa.
 
 
 ### Vihjeitä ja lisätietoja

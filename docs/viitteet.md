@@ -5,7 +5,7 @@ permalink: /viitteet/index.html
 site_menu: 1
 ---
 
-### Kirjallisuutta
+### Yleistä tietokannoista
 
 #### NoSQL Distilled
 
@@ -63,15 +63,58 @@ Kurssimateriaali. Helsingin yliopisto.
 [ITKA204]: https://tim.jyu.fi/view/kurssit/tktl/itka204/kurssimoniste
 [581328]: http://tietokantojen-perusteet.github.io
 
-
-
-### Tietokantateknologioita
+#### Muita viitteitä
 
 <http://db-engines.com>   
 
 <https://bitnami.com/stacks/database>
 
-#### Relaatiotietokannat ja ORM
+
+### Sovellusympäristö
+
+[NetBeans IDE](http://netbeans.org)  
+
+
+#### JavaScript
+
+<https://developer.mozilla.org/en-US/docs/Web>
+
+<http://es6-features.org/>
+
+<http://www.ecma-international.org/ecma-262/6.0/>
+
+<http://eloquentjavascript.net>
+
+
+#### [Node][node] & [Express][express]   
+
+* [Node Documentation][node-doc]: [HTTP][node-http]
+* [Express API Reference][express-api]
+
+* [body-parser][body-parser]
+* [csvtojson](https://www.npmjs.com/package/csvtojson)
+
+<https://docs.npmjs.com>
+
+[node]: https://nodejs.org 
+[node-http]: https://nodejs.org/dist/latest-v6.x/docs/api/http.html 
+[node-doc]: https://nodejs.org/dist/latest-v6.x/docs/api/index.html
+[express]: http://expressjs.com  
+[express-api]: http://expressjs.com/en/4x/api.html
+[body-parser]: https://www.npmjs.com/package/body-parser
+
+
+#### [Handlebars][handlebars]
+   
+* [express-handlebars][express-handlebars]
+   
+   
+[handlebars]: http://handlebarsjs.com
+[express-handlebars]:https://github.com/ericf/express-handlebars
+
+
+
+### Relaatiotietokannat ja ORM
 
 [SQLite][sqlite]  
 
@@ -83,7 +126,7 @@ Kurssimateriaali. Helsingin yliopisto.
 [Sequelize][sequelize]   
 [Bookshelf](http://bookshelfjs.org)
 
-#### Avain-arvoparitietokannat
+### Avain-arvoparitietokannat
 
 [LevelDB](http://leveldb.org)
 
@@ -96,7 +139,7 @@ Kurssimateriaali. Helsingin yliopisto.
  
 [redis]: https://redis.io
   
-#### Dokumenttitietokannat
+### Dokumenttitietokannat
   
 [MongoDB][mongodb]  
 
@@ -110,7 +153,7 @@ Kurssimateriaali. Helsingin yliopisto.
 [TingoDB](http://www.tingodb.com)
 
 
-#### Graafitietokannat
+### Graafitietokannat
 
 [LevelGraph](https://github.com/mcollina/levelgraph/blob/master/README.md)
 
@@ -122,7 +165,7 @@ Kurssimateriaali. Helsingin yliopisto.
 * [Neo4j Driver for Javascript](http://neo4j.com/docs/api/javascript-driver/current/)
 * [GrapheneDB](http://www.graphenedb.com)
 
-#### Sarakeperhetietokannat
+### Sarakeperhetietokannat
 
 [Cassandra][cassandra]  
 
@@ -135,15 +178,13 @@ DataStax Academy.
 * [Datastax Docs](http://docs.datastax.com/en/landing_page/doc/landing_page/current.html)
 * [NetCassandraBeans - plugin](http://plugins.netbeans.org/plugin/59444/netcassandrabeans)
 
-#### Hybriditietokannat
+### Hybriditietokannat
 
 [OrientDB][orientdb]  
 
 * [OrientDB Manual](http://orientdb.com/docs/last/)
 * [OrientJS Driver](http://orientdb.com/docs/last/OrientJS.html) 
 * [OrientDB - Getting Started](https://www.udemy.com/orientdb-getting-started/). Udemy.
-
-
 
 
 [sqlite]: https://www.sqlite.org
@@ -153,45 +194,6 @@ DataStax Academy.
 [neo4j]: https://neo4j.com
 [cassandra]: http://cassandra.apache.org
 [orientdb]: http://orientdb.com
-
-### Muita aineistossa esillä olevia ohjelmistoteknologioita
-
-<https://developer.mozilla.org/en-US/docs/Web>
-
-
-[NetBeans IDE][netbeans]  
-
-[Node][node] & [Express][express]   
-
-* [Node Documentation][node-doc]: [HTTP][node-http]
-* [Express API Reference][express-api]
-
-* [body-parser][body-parser]
-* [csvtojson](https://www.npmjs.com/package/csvtojson)
-
-[Handlebars][handlebars]
-   
-* [express-handlebars][express-handlebars]
-   
-   
-[netbeans]: http://netbeans.org  
-[node]: https://nodejs.org 
-[node-http]: https://nodejs.org/dist/latest-v6.x/docs/api/http.html 
-[node-doc]: https://nodejs.org/dist/latest-v6.x/docs/api/index.html
-[express]: http://expressjs.com  
-[express-api]: http://expressjs.com/en/4x/api.html
-[body-parser]: https://www.npmjs.com/package/body-parser
-[handlebars]: http://handlebarsjs.com
-[express-handlebars]:https://github.com/ericf/express-handlebars
-
-<https://docs.npmjs.com>
-
-
-<http://es6-features.org/>
-
-<http://www.ecma-international.org/ecma-262/6.0/>
-
-<http://eloquentjavascript.net>
 
 
 ### Kurssin tehtävien testeihin liittyviä tekniikoita
