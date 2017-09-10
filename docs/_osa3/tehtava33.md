@@ -1,6 +1,6 @@
 ---
 layout: exercise_page
-title: "Tehtävä 3.3: ... (4p)"
+title: "Tehtävä 3.3: Kurssit ja opettajat, LevelDB CRUD (4p)"
 exercise_template_name: 
 exercise_discussion_id: 
 exercise_upload_id: 
