@@ -27,7 +27,7 @@ Sources
  │     ├── kurssiController.js 
  │     └── opettajaController.js 
  └── views
- │     └── ...  
+       └── ...  
 ~~~
 
 <small>Kuva 1. Sovelluksen lähdekoodi</small>
