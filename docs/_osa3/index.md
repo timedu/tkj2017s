@@ -1,10 +1,7 @@
 ---
 layout: collection_index
 permalink: /:collection/index.html
-kesken: 1
-julkaisu: 11.9.2017
 ---
-
 
 
 Kurssin edellisessä osassa on esillä relaatiotietokanta, joissa tiedot jäsentyvät matemaattisten relaatioiden pohjalta sarakkeiksia ja taulukoiksi. Rivien välisiä yhteyksiä muodostetaan perus- ja vierasavainsarakkeiden avulla. Ennen kuin tietokantaa voidaan käyttää, muodostetaan sen skeema so. määritellään ennalta, minkälaista tietoa tietokanta voi sisältää.
@@ -38,9 +35,24 @@ Nyt NoSQL -tietokannoista esillä on *avain-arvoparitietokanta*[^2], jossa nimen
 Edellisessä osassa esillä olleen *SQLite:n* tapaan *LevelDB*-tietokanta voidaan upottaa sovellukseen siten, että erillistä tietokannan hallintajärjestelmää ei tarvita. 
 
 
-
 ### Tehtävät
+
+
+Tehtävistä kolmen ensimmäisen taustalla on [edellisen osan](../osa2) tehtävistä tuttu *Kurssit ja opettajat* -tietokanta, mikä nyt on jäsennetty kahdella eri tavalla avain-arvoparitietokannaksi. 
 
 
 {% include exercises_list.md %}
 
+
+Avain-arvoparitietokanta on eräs tyyppi aggregaattitietokannoista, joiden rakenteen suunnittelun lähtökohtana on tyypillisesti sovelluksen käsittelemät tietokokonaisuudet. [Tehtävässä 3.1](tehtava31) tiedot jäsentyvät juuri tällä tavalla. Tietokantaan talletetut arvot vastaavat rakenteeltaan näkymien esittämiä tietorakenteita.  
+
+[Tehtävässä 3.2](tehtava32) toteutetaan edelisen kanssa käyttäjän näkökulmasta samanlainen kurssi- ja opettajatietoja esittävä sovellus. Taustalla olevan tietokannan rakenne tässä on kuitenkin erilainen. Rakenne vastaa normalisoitua relaatiotietokantaa, jolloin tiedon tuottaminen näkymiä varten edellyttää edelliseen verrattuna laajempaa koodia.
+
+[Tehtävässä 3.3](tehtava33) laajennetaan tehtävän 3.2 sovellusta ylläpitotoiminnoilla, jotka osin huomioivat samanaikaisuuteen liittyvät ongelmat aikaleimojen avulla.
+
+
+[Tehtävä 3.4](tehtava34) sisältää kurssilukemiston ([NoSQL Distilled][nosql-distilled]), lukuihin 5 ja 6 perustuvan kysymyssarjan.
+
+[nosql-distilled]: /tkj2017s/viitteet/#nosql-distilled
+
+<br/>
