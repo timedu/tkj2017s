@@ -1,7 +1,7 @@
 ---
 layout: exercise_page
 title: "Tehtävä 3.2: Kurssit ja opettajat, LevelDB II (3p)"
-exercise_template_name: W3E01.KurssitJaOpettajatLevel2
+exercise_template_name: W3E02.KurssitJaOpettajatLevel2
 exercise_discussion_id: 83918
 exercise_upload_id: 340397
 ---
