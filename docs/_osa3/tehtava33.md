@@ -9,4 +9,8 @@ kesken: 1
 julkaisu: 12.9.2017
 ---
 
-**Palauta** tehtävän ratkaisuna tiedosto `opettajaController.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. Sovelluksen on oltava käynnissä ja tietokannan alkutilassaan testejä ajettaessa.
+Täydennä [tehtävän 3.2](../tehtava32) ratkaisua ominaisuuksiltaan siten, että sovelluksella voi opettaja- ja kurssitietojen tarkastelun ohella ylläpitää (*lisäys*, *muutos*, *poisto*) opettajatietoja. Käyttäjän kannalta sovellus käyttäytyy kuten [tehtävän 2.3](../../osa2/tehtava23) ratkaisu.
+
+
+
+**Palauta** tehtävän ratkaisuna tiedosto `opettajaControllerCUD.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. Sovelluksen on oltava käynnissä ja tietokannan alkutilassaan testejä ajettaessa.
