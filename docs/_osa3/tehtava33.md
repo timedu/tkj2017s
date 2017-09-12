@@ -46,7 +46,7 @@ Tehtäväpohjan moduuliin `opettajaControllerCUD.js` on kommentoitu ylläpitotoi
 
 Viesteistä kaksi viimeisintä koskevat tilanteita, joissa päivitykseen littyvällä lomakkeella oleva aikaleima ei täsmää tietokannassa olevaan aikaleimaan. 
 
-Tukena voi käyttää  moduulia `opettajaControllerCUD.js`, joka tosin ei sisällä aikaleimakäsittelyä eikä viestien välitystä näkymille.
+Tukena voi käyttää  moduulia `kurssiControllerCUD.js`, joka tosin ei sisällä aikaleimakäsittelyä eikä viestien välitystä näkymille.
 
 
 **Palauta** tehtävän ratkaisuna tiedosto `opettajaControllerCUD.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat Selenium-testit menevät läpi. Sovelluksen on oltava käynnissä ja tietokannan alkutilassaan testejä ajettaessa.
