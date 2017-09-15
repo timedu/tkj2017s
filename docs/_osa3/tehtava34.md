@@ -5,10 +5,10 @@ exercise_discussion_id:
 no_review: 1
 ---
 
-Opiskele [NoSQL Distilled][reading] -kirjasta luvut  *Chapter 5: Consistency*, ja *Chapter 6: Version Stamps*. Vastaa sitten Moodlessa oleviin [monivalintatehtäviin][quiz][^1]. 
+Opiskele [NoSQL Distilled][reading] -kirjasta luvut  *Chapter 5: Consistency*, ja *Chapter 6: Version Stamps*. Vastaa sitten Moodlessa oleviin [monivalintatehtäviin][quiz]. 
 
 [reading]: /tkj2017s/viitteet/#nosql-distilled
-[quiz]: #
+[quiz]: https://moodle2.tut.fi/mod/quiz/view.php?id=341523
 
 
 
@@ -18,4 +18,3 @@ Moodle-tentistä saatu pistemäärä (max 10) skaalataan pyöristäen tämän te
 
 <br/>
 
-[^1]: Tehtävät eivät ole vielä käytettävissä
