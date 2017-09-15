@@ -1,7 +1,7 @@
 ---
 layout: exercise_page
 title: "Tehtävä 3.4: Quiz III (5p)"
-exercise_discussion_id: 
+exercise_discussion_id: 83920
 no_review: 1
 ---
 
