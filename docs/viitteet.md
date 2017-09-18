@@ -216,5 +216,28 @@ DataStax Academy.
 
 <http://chaijs.com>
 
+
+### Tietokantoihin liittyviä opintojaksoja yliopistoissa
+
+
+#### TTY, Hervanta
+
+* [Johdatus tietokantoihin](http://www.tut.fi/opinto-opas/wwwoppaat/opas2017-2018/perus/aineryhmat/Ohjelmistotekniikka/TIE-22101.html)
+* [Tietokantojen suunnittelu](http://www.tut.fi/opinto-opas/wwwoppaat/opas2017-2018/perus/aineryhmat/Ohjelmistotekniikka/TIE-22201.html)
+* [Data-Intensive Programming](http://www.tut.fi/opinto-opas/wwwoppaat/opas2017-2018/perus/aineryhmat/Ohjelmistotekniikka/TIE-22307.html)
+
+#### TTY, Pori
+
+* [Tiedonhallinta ja tietokannat](http://www.tut.fi/opinto-opas/wwwoppaat/opas2017-2018/pori/aineryhmat/Ohjelmistotekniikka/PLA-32602.html)
+* [Tietokantajärjestelmät](http://www.tut.fi/opinto-opas/wwwoppaat/opas2017-2018/pori/aineryhmat/Ohjelmistotekniikka/PLA-32611.html) (tämä kurssi)
+
+#### Helsingin yliopisto, Tietojenkäsittelytiede
+
+
+* [Tietokantojen perusteet](https://courses.helsinki.fi/fi/TKT10004/119284739) (perus)
+* [Tietokannan suunnittelu](https://courses.helsinki.fi/fi/TKT21001/119284741) (aine)
+* [Introduction to Big Data Management](https://courses.helsinki.fi/fi/DATA14002/119122647) (syventävä)
+
+
 <br/>
 
