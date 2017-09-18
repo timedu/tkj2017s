@@ -1,7 +1,7 @@
 ---
 layout: exercise_page
 title: "Tehtävä 4.4: Quiz IV (5p)"
-exercise_discussion_id: 
+exercise_discussion_id: 84713
 no_review: 1
 ---
 

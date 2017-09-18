@@ -1,9 +1,9 @@
 ---
 layout: exercise_page
-title: "Tehtävä 4.3: Kurssit ja opettajat ... (4p)"
-exercise_template_name: # W3E01.KurssitJaOpettajat
-xercise_discussion_id: 
-exercise_upload_id: 
+title: "Tehtävä 4.3: Kurssit ja opettajat, MongoDB CRUD (4p)"
+exercise_template_name: # W4E03.KurssitJaOpettajatMongoCRUD
+xercise_discussion_id: # 84712
+exercise_upload_id: # 341907
 kesken: 1
 julkaisu: 19.9.2017
 no_review: 1
