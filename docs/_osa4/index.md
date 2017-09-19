@@ -1,8 +1,6 @@
 ---
 layout: collection_index
 permalink: /:collection/index.html
-kesken: 1
-julkaisu: 19.9.2017
 ---
 
 
@@ -44,18 +42,24 @@ Mongon ohella tämän osan tehtävissä on esillä kaksi muuta järjestelmää, 
 
 ### Tehtävät
 
-Tehtävissä jatketaan edelleen *kurssien ja opettajien* käsittelyä. 
-
-
-{% comment %}
-
-Esillä on kahdella eri tavalla jäsennetty dokumenttitietokanta, joka tehtävästä riippuen sijaitsee joko sovellukseen upotettuna tai verkon yli käytettävässä pilvipalvelussa. Tietokannan hallinta toteutetaan kussakin tehtävässä eri järjestelmällä. 
-
-{% endcomment %}
+Osan ohjelmointiehtävissä jatketaan edelleen *kurssien ja opettajien* käsittelyä. Tehtävissä on esillä kahdella eri tavalla jäsennetty dokumenttitietokanta, joka sijaitsee nyt verkon yli käytettävässä pilvipalvelussa.
 
 
 {% include exercises_list.md %}
 
+
+[Tehtävässä 4.1](tehtava41) tietokanta on jäsennetty kahdeksi dokumenttikoelmaksi, jotka vastaavat relaatiotietokannan tauluja. Tietokannan rakenne on muutenkin "relaatiomainen": *Kurssi*-dokumentintissa on attribuutti, johon on talletettu kurssin opettajaa vastaavan *Opettaja*-dokumentin tietokantatunniste. Tehtävässä toteutetaan ainoastaan tietokantaan liittyvät kyselyt.
+
+[Tehtävän 4.2](tehtava42) tietokanta muodostuu yhdestä dokumenttikokoelmasta siten, että *Opettaja* esiintyy varsinaisena kokoelman dokumenttina, jonka attribuutin arvona on opettajan pitämien *kurssien* tiedot. Tehtävässä toteutetaan edellisen tehtävän tapaan ainoastaan tietokantaan kohdistyvat kyselyt.
+
+[Tehtävässä 4.3](tehtava43) tehtävän 4.1 ratkaisua täydennetään tietokannan ylläpito-operaatioilla. Sovellusta varten myös perustetaan tietokanta [mLab][mLab]-palvelun kautta [Amazon][Amazon]:in pilveen. [mLab][mLab] tarjoaa veloituksetta (ja ilman luottokorttitietojen antamista) tutustumiskäyttöön 0,5GB ns. hiekkalaatikon.
+
+[mLab]: https://mlab.com
+[Amazon]: https://aws.amazon.com
+
+[Tehtävä 4.4](tehtava44) sisältää kurssilukemiston ([NoSQL Distilled][nosql-distilled]), lukuihin 7 ja 8 perustuvan kysymyssarjan.
+
+[nosql-distilled]: /tkj2017s/viitteet/#nosql-distilled
 
 
 {% comment %}
