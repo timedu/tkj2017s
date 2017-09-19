@@ -8,3 +8,18 @@ kesken: 1
 julkaisu: 19.9.2017
 no_review: 1
 ---
+
+Täydennä [edellisen tehtävän](../tehtava42) ratkaisua siten, että sovelluksella voi kyselyjen lisäksi myös ylläpitää kurssi- ja opettajatietoja. Perusta itsellesi [mLab][mLab]-palveluun [MongoDB][MongoDB] -dokumenttitietokanta ja käytä sitä sovelluksen taustalla. 
+
+[MongoDB]: https://www.mongodb.com
+[mLab]: https://mlab.com
+
+
+
+### Vihjeitä ja lisätietoja
+
+
+...
+
+
+<br/>
