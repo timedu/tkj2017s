@@ -1,6 +1,6 @@
 ---
 layout: exercise_page
-title: "Tehtävä 5.1: Cassandra Quiz"
+title: "Tehtävä 5.1: Cassandra Quiz (4p)"
 exercise_discussion_id: 
 no_review: 1
 kesken: 1

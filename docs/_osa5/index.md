@@ -1,7 +1,6 @@
 ---
 layout: collection_index
 permalink: /:collection/index.html
-kesken: 1
 ---
 
 
@@ -26,25 +25,20 @@ Relaatiotietokannassa avain yksilöi taulun rivin. Avain on sellainen, että ava
 ### Tehtävät
 
 
-{% comment %}
-
-Kurssin tämän osan tehtävistä kaksi ensimmäistä ovat ohjelmointitehtäviä, jotka perustuvat Cassandra-tietokannaksi jäsennettyyn *Kurssit ja opettajat*-aineistoon. Kolmannen tehtävän muodostaa 12 monivalintatehtävää, joiden lähtökohtana on joukko Cassandra:a esitteleviä lyhyitä videoita.
-
-{% endcomment %}
+Kurssin tämä osa sisältää kaksi ohjelmointitehtävää ja kaksi sarjaa eri aineistoihin perustuvia monivalintatehtäviä.
 
 
 {% include exercises_list.md %}
 
 
-{% comment %}
+[Tehtävän 5.1](tehtava51) lähtökohtana on joukko Cassandra:a esitteleviä lyhyitä videoita, jotka ovat osa Datastaxin [Data Modeling][data-modeling] -verkkokurssia[^3]. Aineistoon liittyy 12 monivalintatehtävää. Tehtävät [5.2](tehtava52) ja [5.3](tehtava53) ovat ohjelmointitehtäviä - sovellukseen laaditaan ensin kyselyt ja sitten sitä täydennetään  ylläpito-operaatioilla. [Tehtävä 5.4](tehtava54) sisältää kurssilukemiston ([NoSQL Distilled][nosql-distilled]), lukuihin 9 ja 10 perustuvan kysymyssarjan.
 
-Tehtävät [6.1](tehtava61) ja [6.2](tehtava62) ovat Cassandra -vastineita [edellisen osan](../osa5) Tehtäville [5.1](../osa5/tehtava51) ja [5.2](../osa5/tehtava52): sovellukseen laaditaan ensin kyselyt ja sitten sitä täydennetään opettajatietojen ylläpito-operaatioilla. [Tehtävän 6.3](tehtava63) videoaineisto on osa Datastaxin[^3] [Data Modeling][data-modeling] -verkkokurssia, jota voi opiskella veloituksetta. 
-
-[^3]: [Datastax](http://www.datastax.com/company) on firma, joka tarjoaa kaupallisia Cassandraan perustuvia tuotteita ja palveluja.
+[^3]: Verkkokurssia voi opiskella veloituksetta. [Datastax](http://www.datastax.com/company) on organisaatio, joka tarjoaa kaupallisia Cassandraan perustuvia tuotteita ja palveluja. 
 
 [data-modeling]: https://academy.datastax.com/resources/ds220-data-modeling
 
-{% endcomment %}
+[nosql-distilled]: /tkj2017s/viitteet/#nosql-distilled
+
 
 
 <br/>

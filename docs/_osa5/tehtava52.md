@@ -1,6 +1,6 @@
 ---
 layout: exercise_page
-title: "Tehtävä 5.2: Kurssit ja opettajat, Cassandra"
+title: "Tehtävä 5.2: Kurssit ja opettajat, Cassandra (3p)"
 exercise_template_name: # W5E02.KurssitJaOpettajatCassandra
 exercise_discussion_id: #
 exercise_upload_id: #
