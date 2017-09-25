@@ -2,11 +2,11 @@
 layout: exercise_page
 title: "Tehtävä 5.3: Kurssit ja opettajat, Cassandra CRUD (3p)"
 exercise_template_name: # W5E03.KurssitJaOpettajatCassandraCRUD
-exercise_discussion_id: #
-exercise_upload_id: #
+exercise_discussion_id: # 85228
+exercise_upload_id: # 342882
 no_review: 1
 kesken: 1
-julkaisu: 25.1.2017
+julkaisu: 26.1.2017
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: exercise_page
 title: "Tehtävä 5.4: NoSQL Quiz V (5p)"
-exercise_discussion_id: #
+exercise_discussion_id: # 85229
 no_review: 1
 ---
 

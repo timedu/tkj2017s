@@ -82,9 +82,11 @@ db.collection('opettajat').aggregate([
 ~~~
 <small>Kuva 2. </small>
 
-Haluttu data on tässä niin, että ylätasolla on kurssin tiedot, ja niiden "alapuolelle" kurssin opettajan tiedot, kun taas tietokannassa (*Kuva 1*) tilanne on päinvastainen. Muokkaus haluttuun muotoon voidaan toteuttaa esim. seuraavanlaisella putkilinjalla[^1]:
+Haluttu data on tässä niin, että ylätasolla on kurssin tiedot, ja niiden "alapuolelle" kurssin opettajan tiedot, kun taas tietokannassa (*Kuva 1*) tilanne on päinvastainen. Muokkaus haluttuun muotoon voidaan toteuttaa esim. seuraavanlaisella putkilinjalla[^1] [^2]:
 
 [^1]: Tämän voi kopioida osaksi omaa ratkaisua, mutta oletettavasti on löydettävissä huomattavasti viirtaviivaisempia vaihtoehtoja.
+
+[^2]: Huom. kurssin `id` ei tässä ole Mongo-tietokannassa dokumenttia yksilöivä tunnus, joten `match`-ehdossa olevaa merkkijonoa ei tarvitse muuntaan ao. objektiksi `ObjectID`-funktiolla (vrt. [Tehtävä 4.1](../tehtava41)/Listaus 2/Rivi 9). Kurssi siis ei tässä ole itsenäinen dokumentti vaan toisen dokumentin (opettaja) sisältämä alirakenne.
 
 
 {% highlight js linenos%}
@@ -121,7 +123,7 @@ db.collection('opettajat').aggregate([
 
 <small>Listaus 2.</small>
 
-Edellisen listauksen *riveillä 2-20* viisi pipeline-operaatiota (`match`, `unwind`, `match`, `addFields`, `project`), jotka ottavat lähtökohdakseen aina edellisen operaation tuloksen. *Rivin 2* `match` poimii tietokannasta yhden dokumentin (opettajan), jonka jollakin kurssilla on hakuehdossa annettu id. `unwind` purkaa dokumentin siten, opettajan tiedot toistuvat jokaisen opettan kurssin tietojen rinnalla. Jos opettajalla on esim. neljä kurssia, tämän operaation jälkeen käsittelyssä on neljä dokumenttia. *Rivin 4* `match` poimii käsittelyllä olevista kursseita sen (opettajineen), joka toteuttaa valintaehdon. `addFields` lisää dokumenttiin kenttiä niille tasoille kuin näkymä edellyttää ja `project` poistaa näkymän näkökulmasta ylimääräiset kentät pois dokumentista.
+Edellisen listauksen *riveillä 2-20* viisi pipeline-operaatiota (`match`, `unwind`, `match`, `addFields`, `project`), jotka ottavat lähtökohdakseen aina edellisen operaation tuloksen. *Rivin 2* `match` poimii tietokannasta yhden dokumentin (opettajan), jonka jollakin kurssilla on hakuehdossa annettu id. `unwind` purkaa dokumentin siten, opettajan tiedot toistuvat jokaisen opettajan kurssin tietojen rinnalla. Jos opettajalla on esim. neljä kurssia, tämän operaation jälkeen käsittelyssä on neljä dokumenttia. *Rivin 4* `match` poimii käsittelyllä olevista kursseita sen (opettajineen), joka toteuttaa valintaehdon. `addFields` lisää dokumenttiin kenttiä niille tasoille kuin näkymä edellyttää ja `project` poistaa näkymän näkökulmasta ylimääräiset kentät pois dokumentista.
 
 
 Kurssiluettelon tuottamisen ei tarvittane `match`-operaatiota, mutta `sort` lienee hyödyllinen. Seuraavassa listauksella on *sort*-operaatio, jolla joukko  dokumentteja saadaan kurssin nimen mukaiseen järjestykseen:   

@@ -1,18 +1,19 @@
 ---
 layout: exercise_page
 title: "Tehtävä 5.2: Kurssit ja opettajat, Cassandra (3p)"
-exercise_template_name: # W5E02.KurssitJaOpettajatCassandra
-exercise_discussion_id: #
-exercise_upload_id: #
-no_review: 1
+exercise_template_name: W5E02.KurssitJaOpettajatCassandra
+exercise_discussion_id: 85227
+exercise_upload_id: 342881
 kesken: 1
-julkaisu: 25.1.2017
+julkaisu: 26.1.2017
 ---
 
+Laadi ulkoisilta ominaisuksiltaan edellisten tehtävien ratkaisujen kaltainen sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. Taustalla oleva tietokantaratkaisu on nyt [Cassandra][Cassandra] -sarakeperhetietokanta, jota ajetaan [Docker][Docker]-kontissa tai virtuaalikoneessa, jos konttiin perustuva installaatio ei kehitysympäristössä ole mahdollista.
 
-Laadi ulkoisilta ominaisuksiltaan edellisten tehtävien ratkaisujen kaltainen sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. Taustalla oleva tietokantaratkaisu on nyt [Cassandra][Cassandra] -sarakeperhetietokanta.
 
 [Cassandra]: http://cassandra.apache.org
+[Docker]: https://www.docker.com
+
 
 
 {% comment %}
@@ -41,9 +42,37 @@ Edellisten tehtävien tapaan  palvelupyyntöihin vastaavat *kontrollerit* käytt
 
 Malleja, `models/Opettaja.js` ja `models/Kurssi.js`, lukuunottamatta sovellus on rakennettu valmiiksi. Mallit ottavat moduulin `configs/db_connection.js` käyttöönsä siten, että tietokanta näkyy tunnisteessa `db`.
 
+{% endcomment %}
+
+
+
+Sovelluksen lähdekoodi jäsentyy edellisten tehtävien tapaan.  Moduuleja, `opettajaController.js` ja `kurssiController.js`, lukuunottamatta sovellus on rakennettu valmiiksi. Kontrollerit ottavat moduulin `confi/db_connection.js` käyttöönsä siten, että tietokantarajapinta näkyy tunnisteessa `db`.
+
+
+Tehtäväpohjan moduulissa `config/db_seed.js` on koodi, joka muodostaa tietokannan datoineen sovelluksen jokaisen käynnistyskerran yhteydessä. Jos tietokanta on jo muodostettu, em. moduulissa voi vaihtaa tietyt kommenttimerkit toiseen paikkaan[^2], jolloin moduuli ei luo tietokantaa uudelleen.
+
+[^2]: Moduuliin on kirjattu tästä ohje
+
+Cassandra:n on oltava käynnissä (kontissa tai virtuaalikoneessa) sovellusta käytettäessä.
+
+
+{% comment %}
+
+Bitnamista ladattavissa oleva [linux-virtuaalikone][cassandra-vm] käynnistää automaatisesti Cassandran, johon liittyvät tunnistetiedot ovat näkyvissä koneen *login*-ikkunassa. Moduuliin `configs/db_connection.js` kirjattujen tunnistetietojen tulee olla ne, jotka näkyvät virtuaalikoneessa. Koneeseen ei tarvitse kirjautua.
+
+{% endcomment %}
+
+
+
+**Palauta** tehtävän ratkaisuna tiedostot `opettajaCOntroller.js` ja `kurssiController.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan sovellusta ajamalla sekä käyttäen oheistettuja Selenium-testejä.
+
+
+
+#### Tietokannnan rakenne
+
 Tietokanta rakentuu siten, että kutakin kyselyä varten on oma tietokantataulunsa,  *opettaja_list*, *opettajat*, *kurssi_list* ja *kurssit*. Seuraavissa *Listauksissa 1-6* on esitetty luontikomennot *tauluille* ja niiden viittaamille *tyypeille*[^1].
 
-[^1]: Listaukset on poimittu moduulista `configs/db_seed.js`.
+[^1]: Listaukset on poimittu moduulista `config/db_create.js`.
 
 
 {% highlight javascript %}
@@ -145,38 +174,48 @@ CREATE TYPE IF NOT EXISTS opettaja (  \
 
 *Listauksen 5* esittämässä `kurssit` -taulun perustamiskomennossa  viitataan tyyppiin `opettaja`, jonka määrittely on *Listauksessa 6*.
 
-Tehtäväpohjan moduulissa `configs/db_seed.js` on koodi, joka muodostaa tietokannan datoineen sovelluksen jokaisen käynnistyskerran yhteydessä. Jos tietokanta on jo muodostettu, em. moduulissa voi vaihtaa tietyt kommenttimerkit toiseen paikkaan[^2], jolloin moduuli ei luo tietokantaa uudelleen.
-
-[^2]: Moduuliin on kirjattu tästä ohje
-
-Cassandra:n on oltava käynnissä sovellusta käytettäessä. Bitnamista ladattavissa oleva [linux-virtuaalikone][cassandra-vm] käynnistää automaatisesti Cassandran, johon liittyvät tunnistetiedot ovat näkyvissä koneen *login*-ikkunassa. Moduuliin `configs/db_connection.js` kirjattujen tunnistetietojen tulee olla ne, jotka näkyvät virtuaalikoneessa. Koneeseen ei tarvitse kirjautua.
-
-#### Toiminnot
-
-Sovellus toteuttaa edellisistä tehtävistä tutun sivukartan:
-
-![sivukartta](https://www.lucidchart.com/publicSegments/view/d84f9961-ce43-4b79-bac2-7405afa830ac/image.png)
-
-<small>Kuva 2. Sivukartta</small>
-
-Tietokantataulut ja mallien metodikokonaisuus vastaavat sivukarttaa (*Kuva 2*) - neljä taulua, neljä metodia, neljä sivua. Kaikki sivuilla esitetyt luettelot ovat nousevassa aakkosjärjestyksessä. 
-
-Kussakin metodissa on ainoastaan yksi *CQL*:n *SELECT*-komento. Mikään komennoista ei sisällä *ORDER BY* -lausetta. 
-
-
-#### Palautettava aineisto
-
-**Palauta** tehtävän ratkaisuna tiedostot `models/Opettaja.js` ja `models/Kurssi.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan sovellusta ajamalla sekä käyttäen oheistettuja Selenium-testejä.
-
 
 ### Vihjeitä ja lisätietoja
 
+#### Sovellusrajapinnasta
+
+Cassandra-tietokannan sovellusrajapinta on kuvattu [rajapinnan käsikirjassa][Driver]. Tässä rajapinnasta käytetään sen [client][class.Client]-oliota, jonka sovelluksen mallit ottavat käyttöönsä tunnuksella `db`. Kaikki tarvittavat kyselyt voidaan toteuttaa olion [`execute`][execute] -metodilla[^4], mutta yhdessä kyselyssä toteutus saattaa muodostua yksinkertaisemmaksi [`eachRow`][each-row]-metodia käyttämällä. Metodeille annetaan perametrina [CQL][CQL]-kielisiä komentoja, jotka tässä eivät mitenkään eroa SQL:stä.
+
+
+[Driver]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/
+[class.Client]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/
+[execute]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/#execute
+[each-row]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/#each-row
+[CQL]: http://docs.datastax.com/en/cql/3.1/index.html
+
+
+[^4]: Callback-based API; node.js ei välttämättä vielä tue toista (Promise-based API, using async/await)
+
+
+#### Docker-konteista
+
+...
+
+<https://store.docker.com/search?offering=community&type=edition>
+
+<https://hub.docker.com/r/bitnami/cassandra/>
+
+...
 
 #### Virtuaalikoneesta
 
-Luokkakoneisiin on asennettu  *VMWare Workstation* - ja *VMWare Player* -ohjelmistot, joilla voi ajaa virtuaalikoneita. Bitnamin kone on [ova][ova]-formaatissa, jonka virtualisointiohjelmisto osaa purkaa käyttämäänsä muotoon. Lataa virtuaalikone käyttöä varten luokkakoneen `C:\Temp`-hakemistoon, jonne kaikilla on kirjoitusoikeus.
+<https://bitnami.com/stack/cassandra/virtual-machine>
+
+...
+
+Luokkakoneisiin on asennettu  *VMWare Workstation* - ja *VMWare Player* -ohjelmistot, joilla voi ajaa virtuaalikoneita. Bitnamin kone on [ova][ova]-formaatissa, jonka virtualisointiohjelmisto osaa purkaa käyttämäänsä muotoon. Lataa virtuaalikone[^fn-vm] käyttöä varten luokkakoneen `C:\Temp`-hakemistoon, jonne kaikilla on kirjoitusoikeus.
 
 [ova]: https://en.wikipedia.org/wiki/Open_Virtualization_Format
+
+[^fn-vm]: Virtuaalikoneen Network Adapter asetuksen tulisi olla `NAT`. Jos asetus on `Bridged` (saattaa olla oletus), kone ei toimine toivotulla tavalla esim. silloin, kun verkkoyhteyttä ei ole käytettävissä.
+
+Esim. VMWare Fusion -ohjelmassa (Mac) tämä asetus löytyy valikosta *Virtual Machine / Network Adapter*. Oletettavasti Windows / Linux -ympäristöjen VMWare Workstation / Player -ohjelmistoista löytyy vastaava asetus.
+
 
 Virtualisointiohjelmiston voi latata halutessaan myös omaan kehitysympäristöön. [VMWare Workstation Player][player]:ia voi käyttää vapaasti, kunhan käyttö on ei-kaupallista.
 Binamin konetta voi ajaa myös [VirtualBox][VirtualBox]:lla, jonka voi niin ikään ladata veloituksetta. 
@@ -188,6 +227,9 @@ Cassandran asennuspaketin voi ladata [sen omalta][cassandra-download] tai [DataS
 
 [cassandra-download]: http://cassandra.apache.org/download/
 [datastax-download]: https://academy.datastax.com/planet-cassandra/cassandra
+
+
+
 
 
 #### Tietokannan rakenteesta
@@ -236,28 +278,28 @@ PRIMARY KEY ((key), kurssi) )
 
 <small>Listaus 8. *opettajat*-taulu</small>
 
+
 *Listausten 7 ja 8* perusteella voidaan todeta, että sama data on talletettu yhtä useampaan tauluun - taulujen rakenne perustuu kyselyjen määräämään tarpeeseen: opettajan erittely-näkymä esittää yksittäisen opettajan tiedot mukaan lukien opettajan kurssit nimen mukaisessa aakkosjäjestyksessä.
 
 Kunkin opettajan tiedot kursseineen on talletettu omaan, *key*-attribuutin määräämään, partitioon. Partition sisältämät opettajan pitämät kurssit on järjestetty kurssin nimen mukaiseen aakkosjärjestykseen[^3], koska *kurssi* on perusavaimessa partitioavaimen jälkeen. *Listauksessa 8* esiityvä `STATIC`-määre tarkoittaa sitä, että attribuutti talletetaan partitioon ainoastaan yhteen kertaan (esim. tässä *sukunimeä* ei toisteta jokaisen *kurssin* rinnalla).
  
 [^3]: *kurssi* on *nimi*- ja *key*-attribuutit sisältävä tyyppi, jossa *nimi* on ensimmäisenä (*Listaus 3*)
 
-#### Sovellusrajapinnasta
-
-Cassandra-tietokannan sovellusrajapinta on kuvattu [rajapinnan käsikirjassa][Driver]. Tässä rajapinnasta käytetään sen [client][class.Client]-oliota, jonka sovelluksen mallit ottavat käyttöönsä tunnuksella `db`. Kaikki tarvittavat kyselyt voidaan toteuttaa olion [`execute`][execute] -metodilla[^4], mutta yhdessä kyselyssä toteutus saattaa muodostua yksinkertaisemmaksi [`eachRow`][each-row]-metodia käyttämällä. Metodeille annetaan perametrina [CQL][CQL]-kielisiä komentoja, jotka tässä eivät mitenkään eroa SQL:stä.
 
 
-[Driver]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/
-[class.Client]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/
-[execute]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/#execute
-[each-row]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/#each-row
-[CQL]: http://docs.datastax.com/en/cql/3.1/index.html
+{% comment %}
+
+Tietokantataulut ja mallien metodikokonaisuus vastaavat sivukarttaa (*Kuva 2*) - neljä taulua, neljä metodia, neljä sivua. Kaikki sivuilla esitetyt luettelot ovat nousevassa aakkosjärjestyksessä. 
+
+Kussakin metodissa on ainoastaan yksi *CQL*:n *SELECT*-komento. Mikään komennoista ei sisällä *ORDER BY* -lausetta. 
 
 
-[^4]: Callback-based API; node.js ei välttämättä vielä tue toista (Promise-based API, using async/await)
+{% endcomment %}
+
+
+
 
 
 <br/>
 
-{% endcomment %}
 
