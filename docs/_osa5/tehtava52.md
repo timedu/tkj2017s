@@ -196,6 +196,30 @@ Cassandra-tietokannan sovellusrajapinta on kuvattu [rajapinnan käsikirjassa][Dr
 
 ...
 
+`docker-compose.yml`
+
+~~~
+version: '2'
+
+services:
+  cassandra:
+    image: 'bitnami/cassandra:latest'
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - '7000:7000'
+      - '7001:7001'
+      - '9042:9042'
+      - '9160:9160'
+    volumes:
+      - 'cassandra_data:/bitnami'
+volumes:
+  cassandra_data:
+    driver: local
+~~~
+
+
+
 <https://store.docker.com/search?offering=community&type=edition>
 
 <https://hub.docker.com/r/bitnami/cassandra/>
