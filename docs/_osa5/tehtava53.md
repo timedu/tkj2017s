@@ -6,7 +6,7 @@ exercise_discussion_id: # 85228
 exercise_upload_id: # 342882
 no_review: 1
 kesken: 1
-julkaisu: 26.1.2017
+julkaisu: 27.1.2017
 ---
 
 
