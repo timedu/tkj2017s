@@ -1,74 +1,34 @@
 ---
 layout: exercise_page
 title: "Tehtävä 5.3: Kurssit ja opettajat, Cassandra CRUD (3p)"
-exercise_template_name: # W5E03.KurssitJaOpettajatCassandraCRUD
-exercise_discussion_id: # 85228
-exercise_upload_id: # 342882
-no_review: 1
-kesken: 1
-julkaisu: 27.1.2017
+exercise_template_name: W5E03.KurssitJaOpettajatCassandraCRUD
+exercise_discussion_id: 85228
+exercise_upload_id: 342882
 ---
 
+Täydennä [edellisen tehtävän](../tehtava52) ratkaisuasi opettajatietoihin liittyvillä ylläpitotoiminnolla, *lisäys*, *muutos* ja *poisto*. Tietokanta tässä on aivan sama kuin [Tehtävässä 5.2](../tehtava52). Käyttäjän näkökulmasta ylläpito tapahtuu [Tehtävän 2.3](../../osa2/tehtava23) sivukartan (*kuva 2*) mukaan.
 
-Täydennä [edellisen tehtävän](../tehtava52) ratkaisuasi opettajatietoihin liittyvillä ylläpitotoiminnolla, *lisäys*, *muutos* ja *poisto*. Tietokanta tässä on aivan sama kuin [Tehtävässä 5.2](../tehtava52). 
+Sovelluksen lähdekoodi jäsentyy edellisten tehtävien tapaan.  Kyselyt toteuttavat moduulit `opettajaController.js` ja `kurssiController.js` voi kopioida edellisen tehtävän ratkaisusta. Laadittavaksi tässä jää moduuli  `opettajaControllerCUD.js`, joka tosin sisältää jo ylläpidossa tarvittavat CQL-komennot.
 
+Kontrollerit ottavat moduulin `config/db_connection.js` käyttöönsä siten, että tietokantarajapinta näkyy tunnisteessa `db`.
 
-{% comment %}
+Tietokannassa on neljä taulua `opettajat`, `opettaja_list`, `kurssit` ja `kurssi_list` (ks. [edellinen tehtävä](../tehtava52#tietokannnan-rakenne)), joista opettajatietojen ylläpito kohdistuu kolmeen ensin mainittuun tauluun. 
 
-Täydennä [edellisen tehtävän](../tehtava61) ratkaisuasi opettajatietoihin liittyvillä ylläpitotoiminnolla, *lisäys*, *muutos* ja *poisto*. Tietokanta tässä on aivan sama kuin [Tehtävässä 6.1](../tehtava61). 
-
-
-#### Mallit ja tietokanta
-
-Opettajatietoihin liittyvään malliin on lisätty ylläpitotoimintoja varten kolme metodia, `create`, `update` ja `destroy`:
-
-~~~
-  +---------------+     +---------------+
-  |   Opettaja    |     |    Kurssi     |
-  |   <<model>>   |     |   <<model>>   |
-  +---------------+     +---------------+
-  | findAll       |     | findAll       |
-  | findByKey     |     | findByKey     |
-  | create        |     +---------------+
-  | update        |
-  | destroy       |
-  +---------------+
-~~~
-<small>Kuva 1. Sovelluksen mallit</small>
+Tietokannan toisteisuudesta johtuen kukin ylläpito-toiminto kohdistuu yhtä useampaan tauluun. Opettajan *lisäys* tapahtuu sekä `opettajat`- että `opettaja_list`-tauluun. 
+*Muutos* ja *poisto* kohdistuvat edellisten lisäksi myös `kurssit`-tauluun.
+Opettajan muutoksen yhteydessä on huomioitava, että `opettaja_list`-tauluun kohdistuu *UPDATE*-operaation sijaan *DELETE*- ja *INSERT* -operaatiot, koska muutettava tieto on osana perusavainta.
 
 
-Malleja, `models/Opettaja.js` ja `models/Kurssi.js`, lukuunottamatta sovellus on rakennettu valmiiksi. `findAll`- ja `findByKey` -metodit voit kopioida edellisen tehtävän ratkaisustasi, joten laadittavaksi tässä jää metodit `create`, `update` ja `delete`.
-
-Mallit ottavat moduulin `configs/db_connection.js` käyttöönsä siten, että tietokanta näkyy tunnisteessa `db`. Tietokannassa on neljä taulua *opettajat*, *opettaja_list*, *kurssit* ja *kurssi_list*, joista opettajatietojen ylläpito kohdistuu kolmeen ensin mainittuun tauluun. Tietokannan rakenne ja luonti on kuvattu [edellisen tehtävän](../tehtava61#mallit-ja-tietokanta) yhteydessä.
-
-
-#### Toiminnot
-
-Opettajatietojen ylläpito tapahtuu seuraavan sivukartan mukaan:
-
-![sivukartta](../../osa2/img/w2e03.png)
-
-<small>Kuva 2. Sivukartta: sisältää lomakkeet (*uusi*, *muuta* ja *poista*) tietojen ylläpitoa varten.</small>
-
-Sivukartta voidaan tulkita samalla sovelluksen tilakaavioksi[^3]. `create`-metodin kutsu tapahtuu siirryttäessä *uusi*-tilasta *erittely*-tilaan ja `destroy`-metodin kutsu siirryttäessä *poista*-tilasta *luettelo*-tilaan. *muuta*-tilasta *erittely*-tilaan on kaksi erilaista siirtymää. `update`-metodin kutsu tapahtuu siirtymässä, jonka on pannut liikkeelle käyttäjän tekemä *Talleta*-painikkeen klikkaus.
-
-[^3]: Tehtäväpohjassa oleva kontrolleri toteuttaa tämän tilakaavion
-
-Tietokannan toisteisuudesta johtuen kukin ylläpito-toiminto kohdistuu yhtä useampaan tauluun. Opettajan *lisäys* tapahtuu sekä *opettajat*- että *opettaja_list*-tauluun. *Muutos* ja *poisto* kohdistuvat edellisten lisäksi myös *kurssit*-tauluun. Opettajan muutoksen yhteydessä on huomioitava, että *opettaja_list* tauluun kohdistuu *UPDATE*-operaation sijaan *DELETE*- ja *INSERT* -operaatiot[^3a].
-
-[^3a]: Tämä johtuu siitä, että muutettava tieto on osana perusavainta.
-
-#### Palautettava aineisto
-
-**Palauta** tehtävän ratkaisuna tiedosto `models/Opettaja.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan, ajaen sovellusta sekä käyttäen oheistettuja Selenium-testejä[^4]. 
+**Palauta** tehtävän ratkaisuna tiedosto `opettajaControllerCUD.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan, ajaen sovellusta sekä käyttäen oheistettuja Selenium-testejä[^4]. 
 
 [^4]: Nämä testaavat sovelluksen ulospäin näkyvää toiminnallisuutta eivätkä siten paljasta sisäisiä vikoja.
+
 
 ### Vihjeitä ja lisätietoja
 
 Tietokantaan kohdistuvat ylläpito-operaatiot voi suorittaa kyselyjen tapaan rajapinnan [client][class.Client] -olion [execute][execute] -metodilla, jolle annetaan parametrina [CQL][CQL]:n *INSERT*-, *UPDATE*- tai *DELETE* -komentoja. Tässä kuitenkin jokainen ylläpitotoiminto muodostuu useasta operaatiosta, jolloin operaatioiden suorittamisessa tulisi käyttää [batch][batch] -metodia, jonka avulla operaatioita voidaan niputtaa yhteen.
 
-Tehtävän pohjakoodin moduulissa `configs/db_seed.js` tiedot tietokantaan talletetaan *batch*-metodilla. Seuraavassa on koodista poimintoja, joissa on esillä myös yksilöllisen avaimen generointi lisättävälle tiedolle.
+Tehtävän pohjakoodin moduulissa `configs/db_create.js` tiedot tietokantaan talletetaan *batch*-metodilla. Seuraavassa on koodista poimintoja, joissa on esillä myös yksilöllisen avaimen generointi lisättävälle tiedolle.
 
 
 [class.Client]: http://docs.datastax.com/en/developer/nodejs-driver/3.2/api/class.Client/
@@ -132,10 +92,10 @@ db.batch(InsertRows).then( () => {
 
 {% endhighlight %}
 
-<small>Listaus 1. Poimintoja moduulista *configs/db_seed.js*</small>
+<small>Listaus 1. Poimintoja moduulista *config/db_create.js*</small>
 
 
 <br/>
 
-{% endcomment %}
+
 
