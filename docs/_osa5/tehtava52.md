@@ -203,7 +203,7 @@ function(n, row){
 
 Virtulaalikone on sanansa mukaisesti virtuaalinen tietokone, joka toimii toisen tietokoneen sisällä. Tässä kone on sellainen, johon on asennettu Linux-käyttöjärjestelmä ja Cassandra tietokannan hallintajärjestelmä. Valmiin virtuaalikoneen voi ladata [Bitnamin sivustolta](https://bitnami.com/stack/cassandra/virtual-machine). Kone on kuitenkin sellainen,  jonka tietokannan käyttö koneen ulkopuolelta edellyttänee koneen [porttiasetuksiin pieniä säätöjä](https://docs.bitnami.com/virtual-machine/infrastructure/cassandra/#how-to-connect-to-the-cassandra-server-from-a-different-machine). Koneen hieman vanhemmassa versiossa näitä säätöjä ei tarvitse tehdä. Tämän virtuaalikoneen latausosoite löytyy [Moodlesta](https://moodle2.tut.fi/mod/page/view.php?id=343244).
 
-Luokkakoneisiin on asennettu  *VMWare Workstation* - ja *VMWare Player* -ohjelmistot, joilla voi ajaa virtuaalikoneita. Virtualisointiohjelmiston voi ladata halutessaan myös omaan kehitysympäristöön. [VMWare Workstation Player][player]:ia voi käyttää vapaasti, kunhan käyttö on ei-kaupallista. Binamin konetta voi ajaa myös [VirtualBox][VirtualBox]:lla, jonka voi niin ikään ladata veloituksetta. 
+Luokkakoneisiin on asennettu  *VMWare Workstation* - ja *VMWare Player* -ohjelmistot, joilla voi ajaa virtuaalikoneita. Virtualisointiohjelmiston voi ladata myös omaan kehitysympäristöön. [VMWare Workstation Player][player]:ia voi käyttää vapaasti, kunhan käyttö on ei-kaupallista. Binamin konetta voi ajaa myös [VirtualBox][VirtualBox]:lla, jonka voi niin ikään ladata veloituksetta. 
 
 [VirtualBox]: https://www.virtualbox.org
 [player]: http://www.vmware.com/products/player/playerpro-evaluation.html
@@ -252,7 +252,7 @@ Virtuaalikoneeseen ei tarvitse kirjautua, koska tietokannan hallintajärjestelm�
 Kontititus[^docker-fn1] on virtuaalikoneisiin verrattuna kevyempi virtualisointimenettely. Cassandran saa myös valmiiksi kontitettuna. Konttien ajamista varten tarvitaan [Docker](https://www.docker.com)-ohjelmisto, jonka voi ladata tuotteen sivustolta mm. [Windows-ympäristöön](https://store.docker.com/editions/community/docker-ce-desktop-windows)[^docker-fn2]. 
 
 
-[^docker-fn1]: Ks. esim. [Koodin kontitus kannattaa – "Ei liikutella binääreitä vaan kokonaisuuksia"](http://www.tivi.fi/Kaikki_uutiset/koodin-kontitus-kannattaa-ei-liikutella-binaareita-vaan-kokonaisuuksia-6559362) (tivi 14.6.2016) ja [Koodin kontitus räjähtää kasvuun](http://www.tivi.fi/Kaikki_uutiset/koodin-kontitus-rajahtaa-kasvuun-6615431) (16.1.2017)
+[^docker-fn1]: Ks. esim. [Koodin kontitus kannattaa – "Ei liikutella binääreitä vaan kokonaisuuksia"](http://www.tivi.fi/Kaikki_uutiset/koodin-kontitus-kannattaa-ei-liikutella-binaareita-vaan-kokonaisuuksia-6559362) (tivi 14.6.2016) ja [Koodin kontitus räjähtää kasvuun](http://www.tivi.fi/Kaikki_uutiset/koodin-kontitus-rajahtaa-kasvuun-6615431) (tivi 16.1.2017)
 
 
 [^docker-fn2]: Docker:ia Windows-ymäristössä käsittelee dokumentti [Get started with Docker for Windows](https://docs.docker.com/docker-for-windows/). Saattaa olla, että virtuaalikoneen käyttö on tässä konttia suoraviivaisempi ratkaisu.
