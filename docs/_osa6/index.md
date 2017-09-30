@@ -2,7 +2,7 @@
 layout: collection_index
 permalink: /:collection/index.html
 kesken: 1
-julkaisu: 30.9.2016
+julkaisu: 2.10.2017
 ---
 
 

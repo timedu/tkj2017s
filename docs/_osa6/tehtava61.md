@@ -6,7 +6,7 @@ exercise_discussion_id:
 exercise_upload_id: 
 no_review: 1
 kesken: 1
-julkaisu: 30.9.2016
+julkaisu: 2.10.2017
 ---
 
 \- draft -
