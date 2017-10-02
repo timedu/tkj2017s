@@ -1,13 +1,7 @@
 ---
 layout: collection_index
 permalink: /:collection/index.html
-kesken: 1
-julkaisu: 2.10.2017
 ---
-
-
-\- draft -
-{: style="color:gray; font-size: 80%; text-align: center;"}
 
 Kurssin kahdessa aikaisemmassa osassa käsitellyissä NoSQL -tietokannoissa tietojen väliset yhteydet eivät ole kovin vahvassa osassa. Nyt esillä olevissa *graafitietokannoissa*[^1] yhteyksiä varten tietokannassa on oma elementityyppinsä.
 
@@ -37,5 +31,9 @@ Tämän osan tehtävissä *Kurssit ja opettajat* on ensin jäsennetty [LevelGrap
 [Tehtävässä 6.1](tehtava61) *LevelGraph* -tietokanta muodostuu kolmikoista, joissa predikaattina esiintyy joko *on_opettaja*, *on_kurssi* tai *opettaa*. Opettajien tiedot on talletettu *on_opettaja* -kolmikkoihin ja kurssien tiedot *on_kurssi* -kolmikkoihin. *opettaa* -kolmikoilla määritellään opettajien ja kurssien väliset predikaatin mukaiset yhteydet. Tehtävässä toteutetaan ainoastaan tietokantaan kohdistuvat kyselyt. [Tehtävässä 6.2](tehtava62) ratkaisua täydennetään opettajan tietoihin kohdistuvilla ylläpito-operaatioilla, *lisäys*, *muutos* ja *poisto*.
 
 [Tehtävän 6.3](tehtava63) *Neo4j* -tietokanta on perustettu [GrapheneDB][GrapheneDB]-palvelun kautta [Amazon][Amazon]:in pilveen. Tietokanta on edellisiin tehtäviin verrattuna laajempi sisältäen nyt myös kurssien välisiä yhteyksiä. Tässä tietokanta muodostuu solmuista ja kaarista. Opettajien tiedot on talletettu *Opettaja* -otsikolla varustettuihin solmuihin ja kurssien tiedot solmuihin, joilla on otsikko *Kurssi*. *Kurssi*- ja *Opettaja* -solmujen välillä on *OPETTAA* -otsikolla varustettuja kaaria. Kurssien väliset keskinäiset yhteydet on kuvattu tallettamalla tietokantaan *ON_ESITIETO* -kaaria. Tehtävässä toteutetaan ainoastaan kurssitietoihin kohdistuvat kyselyt. Valmiin tietokannan sijaan voi tukeutua itse perustamaansa tietokantaan.
+
+[Tehtävä 6.4](tehtava64) sisältää kurssilukemiston ([NoSQL Distilled][nosql-distilled]), lukuihin 11 ja 12 perustuvan kysymyssarjan.
+
+[nosql-distilled]: /tkj2017s/viitteet/#nosql-distilled
 
 <br/>

@@ -1,42 +1,22 @@
 ---
 layout: exercise_page
 title: "Tehtävä 6.1: Kurssit ja opettajat, LevelGraph"
-exercise_template_name: # W6E01.KurssitJaOpettajatLevelGraph
-exercise_discussion_id: 
-exercise_upload_id: 
-no_review: 1
-kesken: 1
-julkaisu: 2.10.2017
+exercise_template_name: W6E01.KurssitJaOpettajatLevelGraph
+exercise_discussion_id: 85903
+exercise_upload_id: 344276
 ---
-
-\- draft -
-{: style="color:gray; font-size: 80%; text-align: center;"}
 
 Laadi ulkoisilta ominaisuksiltaan edellisten tehtävien ratkaisujen kaltainen sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. Taustalla oleva tietokantaratkaisu on *triplestore* -tyyppinen [LevelGraph][LevelGraph], joka rakentuu kurssin [osassa 3](../../osa3) esillä olleen [LevelUp][LevelUp] -avain-arvoparitietokannan päälle.  
 
 [LevelGraph]: https://github.com/mcollina/levelgraph/blob/master/README.md
 [LevelUp]: https://github.com/Level/levelup/blob/master/README.md
 
+Sovelluksen lähdekoodi jäsentyy edellisten tehtävien tapaan.  Moduuleja, `opettajaController.js` ja `kurssiController.js`, lukuunottamatta sovellus on rakennettu valmiiksi. Kontrollerit ottavat moduulin `config/db_connection.js` käyttöönsä siten, että tietokantarajapinta näkyy tunnisteessa `db`.
 
-#### Mallit ja tietokanta
-
-Edellisten tehtävien tapaan  palvelupyyntöihin vastaavat *kontrollerit* käyttävät tietokantaa *malleihin*  paketoitujen metodien kautta (*Kuva 1*). 
- 
-~~~
-  +---------------+     +---------------+
-  |   Opettaja    |     |    Kurssi     |
-  |   <<model>>   |     |   <<model>>   |
-  +---------------+     +---------------+
-  | findAll       |     | findAll       |
-  | findByKey     |     | findByKey     |
-  +---------------+     +---------------+
-~~~
-<small>Kuva 1. Sovelluksen mallit</small>
+**Palauta** tehtävän ratkaisuna tiedostot `opettajaController.js` ja `kurssiController.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan sovellusta ajamalla sekä käyttäen oheistettuja Selenium-testejä.
 
 
-Malleja, `models/Opettaja.js` ja `models/Kurssi.js`, lukuunottamatta sovellus on rakennettu valmiiksi. Mallit ottavat moduulin `configs/db_connection.js` käyttöönsä siten, että tietokanta näkyy tunnisteessa `db.graph`.
-
-
+#### Tietokanta
 
 Tietokanta rakentuu  *subject-predicate-object* -kolmikoista, joita tietokannassa on kolmenlaisia (käyttäen luokitteluperusteena prediaatteja). Seuraavissa *Listauksissa 1-3* on esimerkki kustakin kolmikkotyypistä.
 
@@ -97,23 +77,7 @@ Tietokanta on verrattavissa relaatiotietokantaan siten, että *on_opettaja*- ja 
 
 *opettaa* -kolmikon (*Listaus 3*) avulla kerrotaan tässä "*opettaja opettaa kurssia*" -totuuksia siten, että kolmikon `subject` -attribuutin arvona on tilanteeseen liityvän *on_opettaja*-kolmikon `subject`-attribuutin arvo, ja  *opettaa* kolmikon `object` -attribuutin arvona on tilanteeseen liityvän *on_kurssi*-kolmikon `subject`-attribuutin arvo
 
-Tehtäväpohjan tiedostossa `configs/db_seed.js` on koodi, joka muodostaa tietokannan datoineen sovelluksen käynnistyksen yhteydessä, jos tunnisteen (`db.graph`) viittaamassa tietokannassa ei ole kolmikkoja. Koodi tulostaa muodostamansa tietokannan sisällön konsolille (NetBeansin *Output*-ikkunaan).
-
-
-#### Toiminnot
-
-Sovellus toteuttaa edellisistä tehtävistä tutun sivukartan:
-
-![sivukartta](https://www.lucidchart.com/publicSegments/view/d84f9961-ce43-4b79-bac2-7405afa830ac/image.png)
-
-<small>Kuva 2. Sivukartta</small>
-
-Mallien metodikokonaisuus vastaa sivukarttaa (*Kuva 1*). Kaikki sivuilla esitetyt luettelot ovat nousevassa aakkosjärjestyksessä.
-
-
-#### Palautettava aineisto
-
-**Palauta** tehtävän ratkaisuna tiedostot `models/Opettaja.js` ja `models/Kurssi.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan sovellusta ajamalla sekä käyttäen oheistettuja Selenium-testejä.
+Tehtäväpohjan tiedostossa `config/db_create.js` on koodi, joka muodostaa tietokannan datoineen sovelluksen käynnistyksen yhteydessä, jos tunnisteen (`db`) viittaamassa tietokannassa ei ole kolmikkoja. Koodi tulostaa muodostamansa tietokannan sisällön konsolille (NetBeansin *Output*-ikkunaan).
 
 
 ### Vihjeitä ja lisätietoja
@@ -174,7 +138,7 @@ db.search([{
 
 #### Tehtävän ratkaisua tukevat apufunktiot
 
-Tehtävän pohjakoodin `configs`-kansiossa on apufunktioita sisältävä moduuli `utils.js`.  Sovelluksen mallit ottavat moduulin kayttöönsä siten, että mahdollisesti tarvitavat funktiot näkyvät tunnisteilla `sortBy` ja `normalize`. 
+Tehtävän pohjakoodin `config`-kansiossa on apufunktioita sisältävä moduuli `utils.js`.  Sovelluksen kontrollerit ottavat moduulin kayttöönsä siten, että mahdollisesti tarvitavat funktiot näkyvät tunnisteilla `sortBy` ja `normalize`. 
 
 Jo aiemmissa tehtävissä esillä ollut `sortBy` lajitelelee oliotaulukon olion tietyn ominaisuuden mukaiseen aakkosjärjestykseen. `normalize` muokkaa taulukon alkioita seuraavanlaisiksi:
 
