@@ -6,7 +6,7 @@ exercise_discussion_id:
 exercise_upload_id: 
 no_review: 1
 kesken: 1
-julkaisu: 3.10.2017
+julkaisu: 4.10.2017
 ---
 
 
@@ -15,7 +15,7 @@ julkaisu: 3.10.2017
 
 
 
-![Kurssi-sivu](../img/w5e03-kurssi.png){: style="max-width: 350px; height: auto; float: right;"}k
+![Kurssi-sivu](../img/w5e03-kurssi.png){: style="max-width: 350px; height: auto; float: right;"}
 
 Laadi sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. Edellisten tehtävien ratkaisuista sovelluksen ulkoinen käyttäytyminen poikkeaa siten, että *Kurssi*-sivu esittää kurssien välisiä riippuvuuksia. Tietokantaratkaisuna tässä on [pilvipalvelussa][graphenedb] toimiva [Neo4j][Neo4j]-graafitietokanta.
 
