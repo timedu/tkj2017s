@@ -1,26 +1,19 @@
 ---
 layout: exercise_page
 title: "Tehtävä 6.3: Kurssit ja opettajat, Neo4j"
-exercise_template_name: # W6E03.KurssitJaOpettajatNeo4j
-exercise_discussion_id: 
-exercise_upload_id: 
-no_review: 1
-kesken: 1
-julkaisu: 4.10.2017
+exercise_template_name: W6E03.KurssitJaOpettajatNeo4j
+exercise_discussion_id: 85905
+exercise_upload_id: 344452
 ---
 
-
-\- draft -
-{: style="color:gray; font-size: 80%; text-align: center;"}
-
-
-
-![Kurssi-sivu](../img/w5e03-kurssi.png){: style="max-width: 350px; height: auto; float: right;"}
+![Kurssi-sivu](../img/kurssi.png){: style="max-width: 350px; height: auto; float: right;"}
 
 Laadi sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. Edellisten tehtävien ratkaisuista sovelluksen ulkoinen käyttäytyminen poikkeaa siten, että *Kurssi*-sivu esittää kurssien välisiä riippuvuuksia. Tietokantaratkaisuna tässä on [pilvipalvelussa][graphenedb] toimiva [Neo4j][Neo4j]-graafitietokanta.
 
+
 [graphenedb]: http://www.graphenedb.com
 [Neo4j]: https://neo4j.com
+
 
 *Kurssi*-sivulla kurssien välisiä riippuvuuksia esitetään kolmessa ryhmässä. *Välittömät esitiedot* ovat vastaavia, joita on esitetty opinto-oppaassa. *p*-merkintä esitietona olevan kurssin jäljessä tarkoittaa *pakollista* esitietoa ja *s* suositeltavaa esitietoa.  Luettelo on kurssin nimen mukaisessa aakkosjärjestyksessä kuitenkin niin, että pakolliset esitiedot ovat ennen suositeltavia esitietoja.
 
@@ -28,12 +21,39 @@ Laadi sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yh
 
 *Esitieto kursseille* -otsikon alla on luettelo kursseista, joille tämä kurssi on *välitön* esitieto. Tämän ryhmän kurssien  jäljessä on *p/s* -merkintä. Luettelo on nimen mukaisessa aakkosjärjestuksessä.
 
-### Tietokanta
+
+Sovelluksen lähdekoodi jäsentyy edellisten tehtävien tapaan. Sovellus on rakennettu valmiiksi lukuunottamatta moduulia `kurssiController.js`, jossa sielläkin on ratkaisun osana hyödynnettävissä olevaa tietokantakäsittelyyn liittyvää koodia. Laadittava moduuli ottaa moduulin `config/db_connection.js` käyttöönsä siten, että tietokantarajapinta näkyy tunnisteessa `db`. Käytettävän tietokannan[^fn0] tunnukset[^fn1] löytyvät [Moodlesta][tunnukset], jotka tulisi kopioida sovelluksen moduuliin `config/db_connection.js`. Tunnusten ohessa on myös linkki työkaluun, jolla voi *Cypher*-komentojen avulla tutkia tietokannan sisältöä.
+
+
+[tunnukset]: https://moodle2.tut.fi/mod/page/view.php?id=329053
+
+
+[^fn0]: Tässä käytetään tietokantaa, joka on perustettu [GrapheneDB][graphenedb]-palvelun kautta Amazonin pilveen. Palvelu tarjoaa veloituksella "harrastehiekkalaatikon", johon voi perustaa kooltaan rajoitettuja tietokantoja. 
+
+[^fn1]: Tunnuksilla on tietokantaan ainostaan lukuoikeus.
+
+
+**Palauta** tehtävän ratkaisuna tiedosto `kurssiController.js`. Pohjakoodi ei sisällä kattavia testejä, joten varmista sovelluksen toiminta sitä ajamalla. Yhtenä testitapauksena voi toimia tämän sivun alussa oleva kuva. 
+
+
+
+{% comment %}
+
+??? 
+
+Tietokantaan on lisätty (vrt. esim. tehtävä 5.1) kurssi "Johdatus ohjelmistotuotantoon" ja opettaja "Simpsonius, Bartholomeus"; näiltä osin ao. testikoodia on muokattava, jos sitä hyödynnetään tämän tehtävän yhteydessä
+
+{% endcomment %}
+
+
+
+
+#### Tietokannan rakenteesta
 
 Tietokanta muodostuu *Opettaja*- ja *Kurssi* -solmuista (*node*) sekä *OPETTAA*- ja *ON_ESITIETO*-kaarista (*arc*). Seuraavissa *Listauksissa 1-4* on esimerkkejä sovellukseen upotetuista[^1] [Cypher][Cypher]-komennoista, joilla tietokanta on perustettu.
 
 [Cypher]: https://neo4j.com/developer/cypher/
-[^1]: `configs/db_seed.js`
+[^1]: Tietokannan perustava moduuli ei ole mukana pohjakoodissa.
 
 
 {% highlight javascript %}
@@ -93,27 +113,6 @@ Tietokanta muodostuu *Opettaja*- ja *Kurssi* -solmuista (*node*) sekä *OPETTAA*
 <small>Listaus 4. *ON_ESITIETO* -kaaren luonti.</small>
 
 
-Tässä käytetään tietokantaa, joka on perustettu [GrapheneDB][graphenedb]-palvelun kautta Amazonin pilveen. Palvelu tarjoaa veloituksella "harrastehiekkalaatikon", johon voi perustaa kooltaan rajoitettuja tietokantoja. Käytettävän tietokannan tunnukset löytyvät [Moodlesta][tunnukset], jotka tulisi kopioida sovelluksen moduuliin `configs/db_connection.js`. Tunnusten ohessa on myös linkki työkaluun, jolla voi *Cypher*-komentojen avulla tutkia tietokannan sisältöä.
-
-[tunnukset]: https://moodle2.tut.fi/mod/page/view.php?id=310616
-
-Tietokantaan on ainoastaan lukuoikeus. Halutessasi voit perustaa palveluun myös oman tietokantasi, jolloin siihen liittyvät tunnisteet tulee kopioda sovelluksen yhteysmoduuliin (`db_connection`). Sovellus tallettaa tiedot tietokantaan käynnistyksen yhteydessä (`db_seed`), jos käytettävässä tietokannassa ei ole solmuja.
-
-Tietokanta näkyy sovelluksen malleissa tunnuksella `db`.
-
-### Toiminnot
-
-Sovelluksen tietokantakäsittely on edellisten tehtävien tapaan keskitetty moduuleihin `models/Opettaja.js` ja `models/Kurssi.js`, joista ensin mainittu toimii esimerkkeinä. Laadittavana on jäkimmäisen moduulin muodostamaan runkoon kaksi metodia, `findAll` ja `findByKey`. 
-
-### Palautettava aineisto
-
-Palauta tehtävän ratkaisuna tiedosto `models/Kurssi.js`. Pohjakoodi ei sisällä testejä, joten varmista sovelluksen toiminta sitä ajamalla. Yhtenä testitapauksena voi toimia tämän sivun alussa oleva kuva. 
-
-{% comment %}
-
-Tietokantaan on lisätty (vrt. esim. tehtävä 5.1) kurssi "Johdatus ohjelmistotuotantoon" ja opettaja "Simpsonius, Bartholomeus"; näiltä osin ao. testikoodia on muokattava, jos sitä hyödynnetään tämän tehtävän yhteydessä
-
-{% endcomment %}
 
 
 ### Vinkkejä ja lisätietoja
@@ -127,9 +126,10 @@ Sovelluohjelmassa Cypher-komennot välitetään Neo4j:lle käyttäen ajuria, jok
 
 [node-ajuri]: http://neo4j.com/docs/api/javascript-driver/current/
 
+
 #### Pohjakoodista poimittuja esimerkkejä
 
-Sovelluksen moduuli `configs/db_connection.js` muodostaa ja julkistaa [`Driver`][Driver]-olion:  
+Sovelluksen moduuli `config/db_connection.js` muodostaa ja julkistaa [`Driver`][Driver]-olion:  
 
 [Driver]: http://neo4j.com/docs/api/javascript-driver/current/class/src/v1/driver.js~Driver.html
 
@@ -145,13 +145,13 @@ module.exports = driver;
 <small>Listaus 5. </small>
 
 
-Mallit ottavat moduulin käyttöönsä siten, että *driver* näkyy tunnisteessa `db`.
+Kontrollerit ottavat moduulin käyttöönsä siten, että *driver* näkyy tunnisteessa `db`.
 
 
 {% highlight javascript %}
 
 // ...
-const db = require('../configs/db_connection');
+const db = require('../config/db_connection');
 // ...
 
 {% endhighlight %}
@@ -179,9 +179,9 @@ const db = require('../configs/db_connection');
 <small>Listaus 7. </small>
 
 
-Edellisen listauksen moduulista `models/Opettaja.js` poimittu komento tuottaa aakkosjärjestyksessä oleva opettajaluettelon. *MATCH* määrittelee, mihin solmuihin komento kohdistuu; tässä solmut, jotka on otsikoitu tunnisteella *Opettaja* (vrt. *Listaus 1*). Komennon muuttuja *o* viittaa näihin solmuihin, jotka sitten *RETURN* palauttaa sovellukselle. *ORDER BY* täsmentää, että palautettavan tulostaulukon solmut ovat *sukunimi* -ominaisuuden mukaisessa järjestyksessä.
+Edellisen listauksen moduulista `opettajaController.js` poimittu komento tuottaa aakkosjärjestyksessä oleva opettajaluettelon. *MATCH* määrittelee, mihin solmuihin komento kohdistuu; tässä solmut, jotka on otsikoitu tunnisteella *Opettaja* (vrt. *Listaus 1*). Komennon muuttuja *o* viittaa näihin solmuihin, jotka sitten *RETURN* palauttaa sovellukselle. *ORDER BY* täsmentää, että palautettavan tulostaulukon solmut ovat *sukunimi* -ominaisuuden mukaisessa järjestyksessä.
 
-Seuraavan *listauksen  8* *Cypher*-komento on edellistä hieman monimutkaisempi. Myöskin tämä on poimittu moduulista `models/Opettaja.js`.  Komento tuottaa tietyn opettajan tiedot ja sen lisäksi kaikki opettajan pitämät kurssit siten, että kurssit ovat nimen mukaisessa aakkosjärjestyksessä. 
+Seuraavan *listauksen  8* *Cypher*-komento on edellistä hieman monimutkaisempi. Myöskin tämä on poimittu moduulista `opettajaController.js`.  Komento tuottaa tietyn opettajan tiedot ja sen lisäksi kaikki opettajan pitämät kurssit siten, että kurssit ovat nimen mukaisessa aakkosjärjestyksessä. 
 
 {% highlight javascript %}
 
@@ -268,7 +268,7 @@ Tehtävän pohjakoodissa on apufunktio `arrify`, jota käytäen *Listauksen 9* k
 
 #### Tehtävän toteutuksesta
 
-Tehtävässä laaditaan kurssi-tietohin kohdituvat kyselyt moduulin `models/Kurssi.js` funktiorunkoihin, `findAll` ja `findByKey`, joista jälkimmäisen toteutus edellyttää kaarien (*OPETTAA*, *ON_ESITIETO*) hyödyntämistä kyselyn toteutuksessa. Kyselyn rakentaminen onnistunee yhdellä *Cypher*-komennolla, mutta toteutus linee selkeämpi[^4], jos ongelman ratkaisun perustaa useampaan *Cypher*-komentoon. Komentoja voi olla esim. neljä: 1) kurssi ja sen opettaja, 2) kurssin välittömät esitiedot, 3) kurssin muut esitiedot, 4) kurssit, joille tämä kurssi on esitietona. Tällöin komennoista muodostuu seuraavanlainen ketju:
+Tehtävässä laaditaan kurssi-tietohin kohdistuvat kyselyt moduuliin `kurssiController.js`. Yksittäiseen kurssiin liittyvien tietojen haku edellyttää kaarien (*OPETTAA*, *ON_ESITIETO*) hyödyntämistä kyselyn toteutuksessa. Kyselyn rakentaminen onnistunee yhdellä *Cypher*-komennolla, mutta toteutus linee selkeämpi[^4], jos ongelman ratkaisun perustaa useampaan *Cypher*-komentoon. Komentoja voi olla esim. neljä: 1) kurssi ja sen opettaja, 2) kurssin välittömät esitiedot, 3) kurssin muut esitiedot, 4) kurssit, joille tämä kurssi on esitietona. Tällöin komennoista muodostuu seuraavanlainen ketju:
 
 [^4]: tässä ei oteta kantaa suorituskykykysymyksiin
 
@@ -295,7 +295,12 @@ session.run("hae kurssi ja opettaja", {/* par */}).then((result1) => {
 
 <small>Listaus 12. </small>
 
-Kaikki *listauksen 12* komennot voidaan myös suorittaa rinnakkain, koska minkään komennon valintaehto ei perustu edellisen komennon tulokseen. Tosin, jos käy niin, että komento *hae kurssi ja opettaja* ei palautta kurssia, jälkimmäisiä komentoja ei tarvitse suorittaa. Täten *listauksen 13* komennot voisi järjestää niin, että *hae kurssi ja opettaja* suoritetaan ensin ja muut rinnakkain sen jälkeen:
+
+Kaikki *listauksen 12* komennot voidaan myös suorittaa rinnakkain, koska minkään komennon valintaehto ei perustu edellisen komennon tulokseen. Tosin, jos käy niin, että komento *hae kurssi ja opettaja* ei palautta kurssia, jälkimmäisiä komentoja ei tarvitse suorittaa. Täten *listauksen 13* komennot voisi järjestää niin, että *hae kurssi ja opettaja* suoritetaan ensin ja muut rinnakkain[^41] sen jälkeen:
+
+
+[^41]: [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
 
 {% highlight javascript %}
 
@@ -318,9 +323,8 @@ session.run("hae kurssi ja opettaja", {/* par */}).then((result1) => {
 
 <small>Listaus 13. </small>
 
-Tehtävän pohjakoodin moduulissa `configs/db_seed.js` on CSV-tiedostojen lukeminen toteutettu *Listauksen 13* tapaan hyödyntäen [`Promise.all`][Promise.all] -metodia.
 
-[Promise.all]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+Edellä olevan listauksen mukainen ratkaisu on pohjakoodissa kommentoituna. Sen voi halutessaan ottaa ratkaisun osaksi. 
 
 *Listauksen 13* komennot "*hae välittömät esitiedot*" ja "*hae kurssit, joille tämä esitietona*" palauttavat dataa, joka on talletettuna *solmujen* ohella *kaariin* (ks. *Listaus 4*). Tältä osin *kaaria* käsitellään *solmujen* tapaan:
 
@@ -333,6 +337,7 @@ Tehtävän pohjakoodin moduulissa `configs/db_seed.js` on CSV-tiedostojen lukemi
 
 <small>Listaus 14. </small>
 
+
 Edellisen listauksen komento palautaa tietokannan kaikki *ON_ESITIETO* -riippuvuudet (*kaaret*) kursseineen. Listauksessa *kaaren* otsikon edessä on tunniste *e*, joka viittaa tietokannan kaariin. Komennon *RETURN* -lause palauttaa siten *solmujen* ohella myös *kaaren*.
 
 Ohjelmassa *kaarta* edustaa [`Relationship`][Relationship]-olio, jolla on ominaisuudet `identity` ja `properties` kuten edellä esillä olleella [`Node`][Node]-oliollakin.
@@ -341,10 +346,15 @@ Ohjelmassa *kaarta* edustaa [`Relationship`][Relationship]-olio, jolla on ominai
 
 *Listauksissa 12 ja 13* esiintyvän komennon "*hae muut esitiedot*" toteutus edellyttää, että esitieto-polkua seurataan yhtä *ON_ESITIETO*-kaarta etäämmälle. Tällaisen komennon rakentamiseen antanee tukea esim. *Cypherin* [referenssikortin][ref-card] kohta *Patterns*, josta löytyy mm. seuraava esimerkki: `(n)-[*1..5]->(m)` ("*Variable length path of between 1 and 5 relationships from n to m.*").
 
-#### Muutoksia
 
-* 170210: *Vinkkejä ja lisätietoja* -kohtaan lisätty alakohta *Tehtävän toteutuksesta*
+{% comment %}
+
+\- draft -
+{: style="color:gray; font-size: 80%; text-align: center;"}
+
+{% endcomment %}
 
 
 <br/>
+
 
