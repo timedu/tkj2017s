@@ -1,6 +1,6 @@
 ---
 layout: exercise_page
-title: "Tehtävä 6.2: Kurssit ja opettajat, LevelGraph CRUD"
+title: "Tehtävä 6.2: Kurssit ja opettajat, LevelGraph CRUD (4p)"
 exercise_template_name: W6E02.KurssitJaOpettajatLevelGraphCRUD
 exercise_discussion_id: 85904
 exercise_upload_id: 344277

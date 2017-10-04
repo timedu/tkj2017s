@@ -1,6 +1,6 @@
 ---
 layout: exercise_page
-title: "Tehtävä 6.1: Kurssit ja opettajat, LevelGraph"
+title: "Tehtävä 6.1: Kurssit ja opettajat, LevelGraph (3p)"
 exercise_template_name: W6E01.KurssitJaOpettajatLevelGraph
 exercise_discussion_id: 85903
 exercise_upload_id: 344276

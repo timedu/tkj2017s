@@ -1,6 +1,6 @@
 ---
 layout: exercise_page
-title: "Tehtävä 6.3: Kurssit ja opettajat, Neo4j"
+title: "Tehtävä 6.3: Kurssit ja opettajat, Neo4j (3p)"
 exercise_template_name: W6E03.KurssitJaOpettajatNeo4j
 exercise_discussion_id: 85905
 exercise_upload_id: 344452

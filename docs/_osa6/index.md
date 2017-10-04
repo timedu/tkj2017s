@@ -3,6 +3,7 @@ layout: collection_index
 permalink: /:collection/index.html
 ---
 
+
 Kurssin kahdessa aikaisemmassa osassa käsitellyissä NoSQL -tietokannoissa tietojen väliset yhteydet eivät ole kovin vahvassa osassa. Nyt esillä olevissa *graafitietokannoissa*[^1] yhteyksiä varten tietokannassa on oma elementityyppinsä.
 
 [^1]: Ks. esim. [JYU/ITKA204/graafitietokannat]( https://tim.jyu.fi/view/kurssit/tktl/itka204/kurssimoniste#graafitietokannat)
