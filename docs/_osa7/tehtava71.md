@@ -1,18 +1,18 @@
 ---
 layout: exercise_page
 title: "Tehtävä 7.1: OrientDB Quiz (4p)"
-exercise_discussion_id: 
+exercise_discussion_id: 86112
 no_review: 1
 ---
 
-\- draft - draft - draft - draft - draft - draft - 
-{: style="color:gray; font-size: 80%; text-align: center;"}
-
-Opiskele luennot 1, 3 ja 6-10 Udemyn alustalle toteutetusta [OrientDB - Getting Started][OrientDB-Udemy] -verkkokurssista ja vastaa niiden perusteella Moodlessa oleviin [monivalintatehtäviin][quiz].
+Opiskele luennot 1, 3 ja 6-10 Udemyn alustalle toteutetusta [OrientDB - Getting Started][OrientDB-Udemy] -verkkokurssista[^1] ja vastaa niiden perusteella Moodlessa oleviin [monivalintatehtäviin][quiz][^2].
 
 [OrientDB-Udemy]: https://www.udemy.com/orientdb-getting-started/
-[quiz]: # https://moodle2.tut.fi/mod/quiz/view.php?id=312816
+[quiz]: https://moodle2.tut.fi/mod/quiz/view.php?id=329063
 
+[^1]: Luentojen yhteydessä on monivalintatehtäviä, jotka saattavat olla ainakin osittain samoja kuin jäljempänä mainitun Moodle-tentin kysymykset.
+
+[^2]: Kysymykset ja vastausvaihtoehdot ovat englanniksi kuten niihin liittyvä materiaalikin.
 
 [Tehtäväkokonaisuus][quiz] on "Moodle-tentti", jossa on 12 monivalintatehtävää. Vastaamiseen on aikaa kymmenen minuuttia. Kukin oikeaksi tulkittu vastaus tuottaa yhden pisteen väärän vähentäessä puoli pistettä. Vastaamatta jäänyt kysymys ei lisää eikä vähennä pistepottia. Tentin suorituksen jälkeen saa kokonaispalautteen suorituksesta: vastausten myötä muodostunut kokonaispistemäärä. Tentin voi suorittaa enintään neljä kertaa, joista viimeisin suoritus huomioidaan.
 
@@ -41,4 +41,4 @@ Opiskele luennot 1, 3 ja 6-10 Udemyn alustalle toteutetusta [OrientDB - Getting 
 
 Tehtäväkokonaisuudessa ei ole kuitenkaan kysymyksiä, jotka liittyvät järjestelmän asentamiseen (luento 2) eikä hallintatyökalujen käyttöön (luennot 4 ja 5).
 
-
+<br/>

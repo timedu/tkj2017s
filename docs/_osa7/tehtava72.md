@@ -5,6 +5,7 @@ exercise_template_name: # W7E01.KurssitJaOpettajatOrientDBDoc
 exercise_discussion_id: 
 exercise_upload_id: 
 no_review: 1
+julkaisu: 7.10.2017
 kesken: 1
 ---
 
