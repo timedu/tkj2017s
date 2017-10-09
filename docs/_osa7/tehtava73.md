@@ -1,25 +1,21 @@
 ---
 layout: exercise_page
 title: "Tehtävä 7.3: Kurssit ja opettajat, OrientDB - Graph (3p)"
-exercise_template_name: # W7E02.KurssitJaOpettajatOrientDBGraph
-exercise_discussion_id: 
-exercise_upload_id: 
-no_review: 1
-julkaisu: 9.10.2017
+exercise_template_name: W7E03.KurssitJaOpettajatOrientDBGraph
+exercise_discussion_id: 86114
+exercise_upload_id: 329062
+julkaisu: 10.10.2017
 kesken: 1
 ---
 
 \- draft - draft - draft - draft - draft - draft - 
 {: style="color:gray; font-size: 80%; text-align: center;"}
 
-
-Laadi sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. [Tähtävän 5.3](../../osa5/tehtava53) tapaan  *Kurssi*-sivu esittää kurssien välisiä esitieto-riippuvuuksia. Kuten [edellisessä tehtävässä](../tehtava71) tietokantaratkaisuna on tässä [OrientDB][OrientDB], josta nyt hyödynnetään sen graafiominaisuuksia.
+Laadi sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. [Tähtävän 6.3](../../osa6/tehtava63) tapaan  *Kurssi*-sivu esittää kurssien välisiä esitieto-riippuvuuksia. Kuten [edellisessä tehtävässä](../tehtava72) tietokantaratkaisuna on tässä [OrientDB][OrientDB], josta nyt hyödynnetään sen graafiominaisuuksia.
 
 [OrientDB]: http://orientdb.com
 
-#### Mallit ja tietokanta
-
-Tietokantaa käsitellään moduuleissa `models/Kurssi.js` ja `models/Opettaja.js` määriteltyjen `findAll`- ja `findByKey` -metodien kautta. Tehtävä ratkaistaan täydentämällä nämä moduulit. Muilta osin sovellus on pohjakoodissa valmiina.
+Sovelluksen lähdekoodi jäsentyy edellisten tehtävien tapaan. Moduuleja `kurssiController.js` ja `opettajaController.js`lukuunottamatta sovellus on pohjakoodissa valmiina. Tehtävä ratkaistaan täydentämällä nämä moduulit. Kontrollerit ottavat moduulin `config/db_connection.js` käyttöönsä siten, että tietokantarajapinta näkyy tunnisteessa `db`. Tietokantapalvelimen on oltava [edellisen tehtävän](../tehtava72/#tietokantapalvelimen-käynnistäminen) tapaan käynnissä sovellusta ajettaessa.
 
 Tietokanta muodostuu *Kurssi*- ja *Opettaja* -solmuista (`Vertex`) sekä *Opettaa*- ja *OnEsitieto* -kaarista (`Edge`). Nämä kaikki ovat tietokannan luokkia (`Class`), joita voidaan käsitellä SQL:n avulla vastaavasti kuin relaatiotietokannassa käsitellään tauluja SQL-komennoilla. *Kurssi* ja *Opettaja* on periytetty *V* -luokasta ("vertex"), ja *Opettaa* ja *OnEsitieto* luokasta *E* ("edge").
 
@@ -32,27 +28,39 @@ Tietueiden väliset yhteydet muodostuvat kaarien avulla. Kaari-luokka on verratt
 ~~~~
 <small>Kuva 1. </small>
 
-Tietojen talletuksen yhteydessä *Opettaja* -tietueille muodostuu ominaisuudet *sukunimi* ja *etunimi*, ja *Kurssi* -tietueille ominaisuudet *tunnus*, *nimi* ja *laajuus*. Tietueilla ei ole [edellisen tehtävän tietokannassa](../tehtava71/#mallit-ja-tietokanta) esiintyneitä *Link* / *Linklist* -tyyppisiä *opettaja* / *kurssit* -ominaisuuksia, koska tässä yhteydet on toteutettu kaarien avulla. 
+Tietojen talletuksen yhteydessä *Opettaja* -tietueille muodostuu ominaisuudet *sukunimi* ja *etunimi*, ja *Kurssi* -tietueille ominaisuudet *tunnus*, *nimi* ja *laajuus*. Tietueilla ei ole [edellisen tehtävän](../tehtava72) tietokannassa esiintyneitä *Link* / *Linklist* -tyyppisiä *opettaja* / *kurssit* -ominaisuuksia, koska tässä yhteydet on toteutettu kaarien avulla. 
 
+
+{% comment %}
+
+???
 *Opettaa* -tietueilla on *tyyppi* -ominaisuus, jolla esitetään onko esitieto pakollinen (p) vai suositeltava (s).
 
-Pohjakoodin moduuli `config/db_seed.js` luo tietokantaan luokat ja tietueet sovelluksen käynnistyksen yhteydessä, jos tietokanta ei sisällä jotakin em. luokista. Tietokanta kuitenkin tulee perustaa [edellisen tehtävän](../tehtava71/#orientdbn-asennus-ja-tietokannan-perustaminen) tapaan tietokannan 
-hallintatyökalulla. Tietokannan tulee olla nimellä `KouluGraph`. 
+{% endcomment %}
 
 
-#### Toiminnot
+*OnEsitieto* -kaarella on *tyyppi* -ominaisuus, jolla esitetään onko esitieto pakollinen (p) vai suositeltava (s).
 
-Toimintoihin liittyvä sivukartta löytyy esim. [tehtävän 6.1](../../osa6/tehtava61/#toiminnot) kuvauksessa. Mallien toteuttama tietokantakäsittely tapahtuu siirryttäessä sivulta toiselle. [Tehtävän 5.3](../../osa5/tehtava53) kuvauksessa on esitetty kurssien esitieto-riippuvuuksiin liittyvä sovelluksen ulkoinen käyttäytyminen [^1].
 
-[^1]: [Tehtävän 5.3](../../osa5/tehtava53) kuvauksen alussa on esitietoriippuvuuksia esittävä kuva, jossa sama kurssi esiintyy sekä *Välittömät esitiedot* - että *Muut esitiedot* -luettelossa. Tässä tehtävässä *Välittömät esitiedot* -luettelossa oleva kurssi ei ole mukana enää *Muut esitiedot* -luettelossa.
+Pohjakoodin moduuli `config/db_create.js` luo tietokantaan luokat ja tietueet sovelluksen käynnistyksen yhteydessä, jos tietokanta ei sisällä jotakin em. luokista. Tietokanta kuitenkin tulee perustaa [edellisen tehtävän](../tehtava72/#tietokannan-perustaminen) tapaan tietokannan hallintatyökalulla. Tietokannan tulee olla nimellä `KouluGraph`. 
 
-#### Palautettava aineisto
 
-**Palauta** tehtävän ratkaisuna tiedostot `models/Opettaja.js` ja `models/Kurssi.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan sovellusta ajamalla. Pohjakoodi ei sisällä testejä.
+[Tehtävän 6.3](../../osa6/tehtava63) kuvauksessa on esitetty kurssien esitieto-riippuvuuksiin liittyvä sovelluksen ulkoinen käyttäytyminen [^1].
+
+[^1]: [Tehtävän 6.3](../../osa6/tehtava63) kuvauksen alussa on esitietoriippuvuuksia esittävä kuva, jossa sama kurssi esiintyy sekä *Välittömät esitiedot* - että *Muut esitiedot* -luettelossa. Tässä tehtävässä *Välittömät esitiedot* -luettelossa oleva kurssi ei ole mukana enää *Muut esitiedot* -luettelossa.
+
+
+**Palauta** tehtävän ratkaisuna tiedostot `kurssiController.js` ja `opettajaController.js`. Varmista ennen palautusta, että sovellus toimii tehtäväkuvauksen mukaan sovellusta ajamalla. Pohjakoodi ei sisällä kurssien esitietoriippuvuuksia koskevia testejä.
+
 
 ### Vihjeitä ja lisätietoja
 
+{% comment %}
+
 Tehtävässä on täydennettävänä neljä metodia, joista `findAll` -metodit voi kopioida suoraan [edellisen tehtävän](../tehtava71) ratkaisusta. Ehdotukset `models/Opettaja.js` -moduulin `findByKey`- metodiin liittyviksi SQL-komennoiksi on osana pohjakoodia, mutta näitä käyttävä koodi tulee laatia metodin sisällöksi. Moduulissa `models/Kurssi.js` tilanne on päinvastoin: `findByKey` -metodi on kutakuinkin valmis, mutta sen viittaamat SQL-komennot on jätetty laadittavaksi.
+
+{% endcomment %}
+
 
 Pohjakoodi ehdottaa, että tiedot opettajan erittelysivulle tuotetaan kahdella SQL-komennolla (*Listaukset 1 ja 2*): opettajan perustiedot haetaan *Opettaja* -luokan (solmu) kautta ja opettajan kurssit *Opettaa* -luokkaan (kaari) kohdistuvalla kyselyllä.
 
@@ -87,6 +95,10 @@ ORDER BY nimi ';
 <small>Listaus 2. </small>
 
 *Listauksessa 2* ominaisuus *out* on linkki, joka osoittaa *Opettaja* -tietueeseen ja *in* -ominaisuus *Kurssi* -tietueeseen osoittava linkki. 
+
+...
+
+{% comment %}
 
 *Listauksessa 3* on moduulista `models/Kurssi.js` löytyvä `findByKey` -metodi, joka tuottaa tiedot kurssin erittelysivulle. Myös tässä ratkaisu perustuu yhtä useamman kyselyn käyttöön. Metodin toteutuksen rakenneperiaatetta on kuvattu [tehtävässä 5.3](../../osa5/tehtava53/#tehtvn-toteutuksesta). 
 
@@ -171,7 +183,21 @@ WHERE $depth >= 1
 <small>Listaus 4. </small>
 
 
+{% endcomment %}
+
+
+
+{% comment %}
+
+\- draft - draft - draft - draft - draft - draft - 
+{: style="color:gray; font-size: 80%; text-align: center;"}
+
+{% endcomment %}
+
+
 <br/>
+
+
 
 
 
