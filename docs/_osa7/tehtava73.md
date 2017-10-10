@@ -4,12 +4,7 @@ title: "Tehtävä 7.3: Kurssit ja opettajat, OrientDB - Graph (3p)"
 exercise_template_name: W7E03.KurssitJaOpettajatOrientDBGraph
 exercise_discussion_id: 86114
 exercise_upload_id: 329062
-julkaisu: 10.10.2017
-kesken: 1
 ---
-
-\- draft - draft - draft - draft - draft - draft - 
-{: style="color:gray; font-size: 80%; text-align: center;"}
 
 Laadi sovellus, jolla voidaan tarkastella *kurssi- ja opettajatietoja* sekä *yhteenveto-* että *erittelymuotoisten* näkymien kautta. [Tähtävän 6.3](../../osa6/tehtava63) tapaan  *Kurssi*-sivu esittää kurssien välisiä esitieto-riippuvuuksia. Kuten [edellisessä tehtävässä](../tehtava72) tietokantaratkaisuna on tässä [OrientDB][OrientDB], josta nyt hyödynnetään sen graafiominaisuuksia.
 
@@ -22,30 +17,24 @@ Tietokanta muodostuu *Kurssi*- ja *Opettaja* -solmuista (`Vertex`) sekä *Opetta
 Tietueiden väliset yhteydet muodostuvat kaarien avulla. Kaari-luokka on verrattavissa relaatiotietokannan ns. välitauluun, jolla kuvataan tietojen välisiä n:m -yheyksiä. Kaarella on *in*- ja *out*-ominaisuudet, jotka ovat linkkejä kaareen liittyviin solmuihin. Esim. tilanteessa "*opettaja opettaa kurssia*", *opettaa* -kaaren *in*-linkki osoittaa *kurssiin* ja *out* -linkki *opettajaan*:
 
 ~~~~
-
-  [ Opettaja ] -(out)----( Opettaa )-----(in)-> [ Kurssi ]
-
+  [ Opettaja ] -(out)----( Opettaa )----(in)-> [ Kurssi ]
 ~~~~
 <small>Kuva 1. </small>
+
+
+Pohjakoodin moduuli `config/db_create.js` luo tietokantaan luokat ja tietueet sovelluksen käynnistyksen yhteydessä, jos tietokanta ei sisällä jotakin em. luokista. Tietokanta kuitenkin tulee perustaa [edellisen tehtävän](../tehtava72/#tietokannan-perustaminen) tapaan tietokannan hallintatyökalulla. Tietokannan tulee olla nimellä `KouluGraph`. 
 
 Tietojen talletuksen yhteydessä *Opettaja* -tietueille muodostuu ominaisuudet *sukunimi* ja *etunimi*, ja *Kurssi* -tietueille ominaisuudet *tunnus*, *nimi* ja *laajuus*. Tietueilla ei ole [edellisen tehtävän](../tehtava72) tietokannassa esiintyneitä *Link* / *Linklist* -tyyppisiä *opettaja* / *kurssit* -ominaisuuksia, koska tässä yhteydet on toteutettu kaarien avulla. 
 
 
 {% comment %}
-
 ???
 *Opettaa* -tietueilla on *tyyppi* -ominaisuus, jolla esitetään onko esitieto pakollinen (p) vai suositeltava (s).
-
 {% endcomment %}
 
 
-*OnEsitieto* -kaarella on *tyyppi* -ominaisuus, jolla esitetään onko esitieto pakollinen (p) vai suositeltava (s).
+*OnEsitieto* -kaarella on *tyyppi* -ominaisuus, jolla esitetään onko esitieto pakollinen (p) vai suositeltava (s). [Tehtävän 6.3](../../osa6/tehtava63) kuvauksessa on esitetty kurssien esitieto-riippuvuuksiin liittyvä sovelluksen ulkoinen käyttäytyminen [^1].
 
-
-Pohjakoodin moduuli `config/db_create.js` luo tietokantaan luokat ja tietueet sovelluksen käynnistyksen yhteydessä, jos tietokanta ei sisällä jotakin em. luokista. Tietokanta kuitenkin tulee perustaa [edellisen tehtävän](../tehtava72/#tietokannan-perustaminen) tapaan tietokannan hallintatyökalulla. Tietokannan tulee olla nimellä `KouluGraph`. 
-
-
-[Tehtävän 6.3](../../osa6/tehtava63) kuvauksessa on esitetty kurssien esitieto-riippuvuuksiin liittyvä sovelluksen ulkoinen käyttäytyminen [^1].
 
 [^1]: [Tehtävän 6.3](../../osa6/tehtava63) kuvauksen alussa on esitietoriippuvuuksia esittävä kuva, jossa sama kurssi esiintyy sekä *Välittömät esitiedot* - että *Muut esitiedot* -luettelossa. Tässä tehtävässä *Välittömät esitiedot* -luettelossa oleva kurssi ei ole mukana enää *Muut esitiedot* -luettelossa.
 
@@ -61,6 +50,9 @@ Tehtävässä on täydennettävänä neljä metodia, joista `findAll` -metodit v
 
 {% endcomment %}
 
+#### opettajaController
+
+Pohjan moduuli `opettajaController.js` sisältää kaikki ratkaisuun tarvittavat *SQL* -komennot. Laadittavana on ainoastaan metodi, joka *SQL*-komentoja hyödyntäen tuottaa näkymään yksittäisen opettajan tiedot kursseineen.
 
 Pohjakoodi ehdottaa, että tiedot opettajan erittelysivulle tuotetaan kahdella SQL-komennolla (*Listaukset 1 ja 2*): opettajan perustiedot haetaan *Opettaja* -luokan (solmu) kautta ja opettajan kurssit *Opettaa* -luokkaan (kaari) kohdistuvalla kyselyllä.
 
@@ -96,27 +88,23 @@ ORDER BY nimi ';
 
 *Listauksessa 2* ominaisuus *out* on linkki, joka osoittaa *Opettaja* -tietueeseen ja *in* -ominaisuus *Kurssi* -tietueeseen osoittava linkki. 
 
-...
 
-{% comment %}
+#### kurssiController
 
-*Listauksessa 3* on moduulista `models/Kurssi.js` löytyvä `findByKey` -metodi, joka tuottaa tiedot kurssin erittelysivulle. Myös tässä ratkaisu perustuu yhtä useamman kyselyn käyttöön. Metodin toteutuksen rakenneperiaatetta on kuvattu [tehtävässä 5.3](../../osa5/tehtava53/#tehtvn-toteutuksesta). 
+Pohjan moduuli `kurssiController.js` sisältää kurssiluettelon tuottamiseen liittyvän *SQL* -komennon sekä ehdotukset yksittäisen kurssin tietojen haussa käytettävien *SQL*-komentojen rakenteesta. Pohjassa on myös valmis metodi, jolla voidaan hakea tiedot yksittäisen kurssin tiedot esitttävään näkymään, jos ratkaisu toteutetaan em. ehdotusten mukaisena. Laadittavana on metodi, joka tuotaa näkymään kurssiluettelon, sekä joukko yksittäisen kurssien tietojen hakuun liittyviä *SQL*-komentoja.
+
+
+*Listauksessa 3* on moduulista `kurssiController.js` löytyvä metodi, joka tuottaa tiedot kurssin erittelysivulle. Myös tässä ratkaisu perustuu yhtä useamman kyselyn käyttöön. Metodin toteutuksen rakenneperiaatetta on kuvattu [tehtävässä 6.3](../../osa6/tehtava63/#tehtävän-toteutuksesta). 
 
 
 {% highlight javascript %}
 
+app.get('/kurssit/:key', (req, res) => {
 
-Kurssi.findByKey = (kurssi_key, callback) => {
+   db.record.get('#' + req.params.key).then(kurssi => {
 
-   // nämä rivit pois-kommentoidaan
-   callback({});
-   return;
-   //
-
-   db.record.get('#' + kurssi_key).then(kurssi => {
-   
       Promise.all([
-      
+
          db.query(FindOpettajaUsingEdge, {
             params: {kurssi_rid: kurssi['@rid']}
          }),
@@ -129,25 +117,30 @@ Kurssi.findByKey = (kurssi_key, callback) => {
          db.query(TraverseMuutEsitiedot, {
             params: {kurssi_rid: kurssi['@rid']}
          })
-         
+
       ]).then(resArr => {
-      
+
          kurssi.opettaja = resArr[0][0];
          kurssi.valittomat_esitiedot = resArr[1];
          kurssi.esitieto_kursseille = resArr[2];
          kurssi.muut_esitiedot = resArr[3];
-         
-         callback(kurssi);
-         
-      }).catch(error => {
-         log(error);
-         callback({});
+
+         res.render('kurssi_detail', {
+            kurssi: kurssi
+         });
+
+      }).catch(err => {
+         res.send('error occurred - see console');
+         console.error('kurssiController:', err);
       });
-   }).catch(error => {
-      log(error);
-      callback({});
+   }).catch(err => {
+      res.send('error occurred - see console');
+      console.error('kurssiController:', err);
    });
-};
+
+});
+
+
 
 {% endhighlight %}
 
@@ -161,9 +154,7 @@ Kurssi.findByKey = (kurssi_key, callback) => {
 [Traverse]: http://orientdb.com/docs/last/SQL-Traverse.html
 
 ~~~~
-
 [Ohjelmiointitekniikka]-->[Olio-ohjelmointi]-->[Tietorakenteet]
-
 ~~~~
  
 <small>Kuva 2. </small>
@@ -171,19 +162,13 @@ Kurssi.findByKey = (kurssi_key, callback) => {
 
 Seuraavassa on eräs `TRAVERSE`-komentoa soveltava kysely, joka poimii kavereita kaveri-polun varrelta tiettyltä etäisyydeltä. `WHERE` poistaa tuloksesta henkilön (`#10:1234`), josta polun seuraaminen lähti liikkeelle.
 
-{% highlight sql %}
-
+~~~
 SELECT 
 FROM (TRAVERSE out("Friend") FROM #10:1234 MAXDEPTH 4) 
 WHERE $depth >= 1
-
-
-{% endhighlight %}
+~~~
 
 <small>Listaus 4. </small>
-
-
-{% endcomment %}
 
 
 
