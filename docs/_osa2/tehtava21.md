@@ -26,9 +26,9 @@ Pohjakoodissa oleva tietokanta sisältää kaksi tietokantataulua: *Kurssi* ja *
 
 
 
-Tehtäessä pyyntö polkuun `/kurssit`, tulee esiin *Kurssit* -sivu, joka esittää luettelon tietokannan sisältämistä kursseista nimen mukaisessa aakkosjärjestyksessä. Kurssin nimi toimii samalla linkkinä, jonka klikkaus tuo esiin *Kurssi* -sivun sisältäen yksittäisen kurssin tiedot. *Kurssi*-sivulle voidaan siirtyä myös suoraan tekemällä pyyntö seuraavanlaiseen polkuun: `/kurssit/PLA-32820` (polun loppuosa on kurssin tunnus). *Kurssi*-sivu esittää myös kurssin opettajan nimen, joka toimii samalla linkkinä *Opettaja* -sivulle.
+Tehtäessä pyyntö polkuun `/kurssit`, tulee esiin *Kurssit* -sivu, joka esittää luettelon tietokannan sisältämistä kursseista nimen mukaisessa **aakkosjärjestyksessä**. Kurssin nimi toimii samalla linkkinä, jonka klikkaus tuo esiin *Kurssi* -sivun sisältäen yksittäisen kurssin tiedot. *Kurssi*-sivulle voidaan siirtyä myös suoraan tekemällä pyyntö seuraavanlaiseen polkuun: `/kurssit/PLA-32820` (polun loppuosa on kurssin tunnus). *Kurssi*-sivu esittää myös kurssin opettajan nimen, joka toimii samalla linkkinä *Opettaja* -sivulle.
 
-Tehtäessä pyyntö polkuun `/opettajat`, tulee esiin *Opettaja* -sivu, joka esittää luettelon tietokannan sisältämistä opettajista sukunimen mukaisessa aakkosjärjestyksessä. Opettajan nimi toimii samalla linkkinä, jonka klikkaus tuo esiin *Opettaja* -sivun sisältäen yksittäisen opettajan tiedot. *Opettaja*-sivulle voidaan siirtyä myös suoraan tekemällä pyyntö seuraavanlaiseen polkuun: `/opettajat/5` (polun loppuosa on opettajan id). *Opettaja*-sivu esittää myös aakkosjärjestyksessä olevan luettelon opettajan kursseista, jotka toimivat samalla linkkeinä *Kurssi* -sivuille.
+Tehtäessä pyyntö polkuun `/opettajat`, tulee esiin *Opettaja* -sivu, joka esittää luettelon tietokannan sisältämistä opettajista sukunimen mukaisessa **aakkosjärjestyksessä**. Opettajan nimi toimii samalla linkkinä, jonka klikkaus tuo esiin *Opettaja* -sivun sisältäen yksittäisen opettajan tiedot. *Opettaja*-sivulle voidaan siirtyä myös suoraan tekemällä pyyntö seuraavanlaiseen polkuun: `/opettajat/5` (polun loppuosa on opettajan id). *Opettaja*-sivu esittää myös **aakkosjärjestyksessä** olevan luettelon opettajan kursseista, jotka toimivat samalla linkkeinä *Kurssi* -sivuille.
 
 Sovelluksen lähdekoodi jäsentyy seuraavasti:
 

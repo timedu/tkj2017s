@@ -40,7 +40,7 @@ x = count('/abc'); // 4
 {% endhighlight %}
 
 
-`counter`-moduulin runko löytyy tehtäväpohjasta siten, että sen tarjoama funktio palautaan aina arvon 9.
+`counter`-moduulin runko löytyy tehtäväpohjasta siten, että sen tarjoama funktio palauttaa aina arvon 9.
 
 **Palauta** tehtävän ratkaisuna tiedostot `main.js` ja `counter.js`. Varmista ennen palautusta, että tehtäväpohjassa olevat testit menevät läpi. Selenium-testit testaavat sovellusta kokonaisuutena. Yksikkötestauksen kohteena on *counter*-moduuli. Huomioi, että Selenium-testejä ajettaessa sovelluksen on oltava käynnissä.
 
@@ -105,7 +105,7 @@ Tehtäväpohjaan tiedostossa `counter.js` on määritelty seuraava moduuli:
 
 {% highlight javascript %}
 
-var requests = [];
+var requests = {};
 
 module.exports = function (url) {    
     return 9;

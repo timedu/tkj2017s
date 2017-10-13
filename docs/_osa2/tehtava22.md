@@ -220,7 +220,7 @@ Jos halutaan, että tuloksessa on mukana opettajan kurssit, koodia on hieman tä
 
 {% endhighlight %}
 
-<small>Listaus 7. Opettajan tietojen haku ilman kursseja</small>
+<small>Listaus 7. Opettajan tietojen haku kurssien kera</small>
 
 *Listauksen 7* koodi ei vielä lajittele opettajan kursseja. Lajittelun edellyttämä täydennys on esitetty *listauksessa 4*.
 

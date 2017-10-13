@@ -68,7 +68,7 @@ Funktiolla on parametreinaan kaksi objektia, `req` ja `res`, joista ensimmäinen
 request --> [funktio] --> response
 ~~~
 
-Tehtävän ensimmäisen vaiheen (1) ratkaisuksi riittää pieni vakiotekstin muutos riville, jonka myötä muodostuu selaimen ikkunassa näkyvä tuloste, mutta toinessa vaiheessa (2) tarvitaan tietoa siitä, mihin polkuun pyyntö on kohdistunut. Vastaus löytyy selaamalla Noden [ohjelmointirajapinnan dokumentaatiota][node-api]: `req`-objekti on tyyppiä [`IncomingMessage`][IncomingMessage] ja objektin `url`-ominaisuudesta löytyy juuri tässä tarvittava tieto. 
+Tehtävän ensimmäisen vaiheen (1) ratkaisuksi riittää pieni vakiotekstin muutos riville, jonka myötä muodostuu selaimen ikkunassa näkyvä tuloste, mutta toisessa vaiheessa (2) tarvitaan tietoa siitä, mihin polkuun pyyntö on kohdistunut. Vastaus löytyy selaamalla Noden [ohjelmointirajapinnan dokumentaatiota][node-api]: `req`-objekti on tyyppiä [`IncomingMessage`][IncomingMessage] ja objektin `url`-ominaisuudesta löytyy juuri tässä tarvittava tieto. 
 
 [node-api]: https://nodejs.org/api/
 [IncomingMessage]: https://nodejs.org/api/http.html#http_class_http_incomingmessage

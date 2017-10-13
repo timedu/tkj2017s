@@ -38,7 +38,7 @@ Sources
  ├── controllers
  │     ├── kurssiController.js      // kyselyt (luettelo, erittely)
  │     ├── kurssiControllerCUD.js   // lisäys, muutos, poisto
- │     ├── kurssiController.js      // kyselyt (luettelo, erittely)
+ │     ├── opettajaController.js    // kyselyt (luettelo, erittely)
  │     └── opettajaControllerCUD.js // lisäys, muutos, poisto
  ├── models
  │     ├── Kurssi.js            // kurssin "mapping" tietokantaan
